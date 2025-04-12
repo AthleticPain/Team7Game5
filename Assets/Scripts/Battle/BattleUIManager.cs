@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 public class BattleUIManager : MonoBehaviour
 {
@@ -12,13 +13,20 @@ public class BattleUIManager : MonoBehaviour
     public void ShowPlayerActionsPanel()
     {
         //DoTween player actions panel in
-        playerActionsPanel.gameObject.SetActive(true);
+
+        //playerActionsPanel.gameObject.SetActive(true);
+        playerActionsPanel.DOAnchorPos(Vector2.zero, 0.2f).SetEase(Ease.OutBack);
     }
 
     public void HidePlayerActionsPanel()
     {
         //DoTween player actions panel out
-        playerActionsPanel.gameObject.SetActive(false);
+
+        //playerActionsPanel.gameObject.SetActive(false);
+        RectTransform parentRect = playerActionsPanel.parent as RectTransform;
+
+        playerActionsPanel.DOAnchorPos(new Vector2(parentRect.rect.width, 0f), 0.2f)
+            .SetEase(Ease.InBack);
     }
 
     public void ShowGameOverPanel(string gameOverTextMessage)
@@ -26,6 +34,4 @@ public class BattleUIManager : MonoBehaviour
         gameOverText.text = gameOverTextMessage;
         gameOverPanel.gameObject.SetActive(true);
     }
-    
-    
 }
