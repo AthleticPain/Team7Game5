@@ -14,10 +14,12 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] List<EnemyUnit> enemyUnits;
     [SerializeField] List<PlayerUnit> playerUnits;
     [SerializeField] List<Unit> unitsInTurnOrder;
-    
-    [Header("Debug")]
-    [SerializeField, ReadOnly] private string currentStateName;
+
+    [Header("Debug")] [SerializeField, ReadOnly]
+    private string currentStateName;
+
     [SerializeField, ReadOnly] private int currentTurnIndex;
+    public Unit CurrentUnit => unitsInTurnOrder[currentTurnIndex];
 
     //Set a new state
     public void SetState(BattleStateBase newState)
@@ -25,7 +27,7 @@ public class BattleSystem : MonoBehaviour
         currentState?.Exit();
         currentState = newState;
         currentState.Enter();
-        
+
         currentStateName = currentState.GetType().Name;
     }
 
@@ -48,7 +50,14 @@ public class BattleSystem : MonoBehaviour
 
     public void OnPlayerChosenMove(MoveSO move)
     {
-        SetState(new PlayerMoveExecutionState(this, move));
+        //TODO: Remove temporary hardcoded enemy and make it dynamic
+        EnemyUnit targetEnemy = enemyUnits[0];
+
+        //Only allow this to happen when it is player's turn
+        if (currentState is PlayerActionSelectionState)
+        {
+            SetState(new PlayerMoveExecutionState(this, move, targetEnemy));
+        }
     }
 
     public void OnEnemyTurn()
@@ -56,22 +65,65 @@ public class BattleSystem : MonoBehaviour
         SetState(new EnemyTurnState(this));
     }
 
-    public void EndBattle()
+    public void EndBattle(bool win)
     {
-        //SetState(new BattleEndState(this));
+        string endingStatement = win ? "You win!" : "You lose!";
+        Debug.Log("Battle Ended. " + endingStatement);
+        SetState(new BattleEndState(this));
     }
 
     //Called when player or enemy ends their turn
     public void OnTurnEnded()
     {
-        currentTurnIndex = (currentTurnIndex + 1) % unitsInTurnOrder.Count;
+        //Check if game over conditions are met
+        if (IsBattleOver())
+            return;
         
+        //If game is not over, find next living unit's turn
+        AdvanceToNextLivingUnit(); 
         var currentUnit = unitsInTurnOrder[currentTurnIndex];
-        
+        Debug.Log(currentUnit.name + "'s Turn!");
+
         if (currentUnit is PlayerUnit)
             OnPlayerTurn();
         else
             OnEnemyTurn();
+    }
+
+    //Checks if either all player's are dead or all enemies are dead and ends battle accordingly
+    private bool IsBattleOver()
+    {
+        bool allPlayersDead = playerUnits.All(p => p.IsDead);
+        if (allPlayersDead)
+        {
+            EndBattle(false); // Lost
+            return true;
+        }
+
+        bool allEnemiesDead = enemyUnits.All(e => e.IsDead);
+        if (allEnemiesDead)
+        {
+            EndBattle(true); // Won
+            return true;
+        }
+
+        return false;
+    }
+
+    //Increments currentTurnIndex global variable to next living unit
+    private void AdvanceToNextLivingUnit()
+    {
+        int startingIndex = currentTurnIndex;
+        do
+        {
+            currentTurnIndex = (currentTurnIndex + 1) % unitsInTurnOrder.Count;
+
+            if (!unitsInTurnOrder[currentTurnIndex].IsDead)
+                return;
+        } while (currentTurnIndex != startingIndex);
+
+        // Failsafe: if we somehow loop all units and find all dead (shouldn’t happen due to IsBattleOver)
+        Debug.LogError("No living units found when advancing turn.");
     }
 
     public void ShowActionMenu()
@@ -79,25 +131,20 @@ public class BattleSystem : MonoBehaviour
         //Player action UI logic here
     }
 
-    public EnemyUnit GetCurrentEnemyUnit()
+    //Returns the current unit as type T
+    public T GetCurrentUnitAs<T>() where T : Unit
     {
-        if (unitsInTurnOrder[currentTurnIndex] is EnemyUnit)
-        {
-            return (EnemyUnit)unitsInTurnOrder[currentTurnIndex];
-        }
-        else
-        {
-            return null;
-        }
+        return unitsInTurnOrder[currentTurnIndex] as T;
     }
 
     public PlayerUnit GetRandomLivingPlayer()
     {
         var livingPlayers = playerUnits.Where(p => p.unitState != UnitStateEnum.dead).ToList();
 
+        //Redundancy check, ideally code should never go into this block
         if (livingPlayers.Count == 0)
         {
-            Debug.LogWarning("No living players left!");
+            Debug.LogWarning("Something went Wrong! No living players left!");
             return null; // Or handle game over
         }
 

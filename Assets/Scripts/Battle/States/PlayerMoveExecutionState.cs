@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlayerMoveExecutionState : BattleStateBase
 {
     private MoveSO move;
+    private EnemyUnit targetEnemy;
 
-    public PlayerMoveExecutionState(BattleSystem battle, MoveSO move) : base(battle)
+    public PlayerMoveExecutionState(BattleSystem battle, MoveSO move, EnemyUnit targetEnemy) : base(battle)
     {
         this.move = move;
+        this.targetEnemy = targetEnemy;
     }
 
     public override void Enter()
@@ -19,26 +21,28 @@ public class PlayerMoveExecutionState : BattleStateBase
 
     private IEnumerator ExecuteMove()
     {
-        // var player = battle.GetCurrentPlayerUnit();
-        // var target = battle.GetSelectedEnemy();
-        //
-        // player.PlayAttack();
-        // yield return new WaitForSeconds(0.5f);
-        //
-        // target.TakeDamage(move.Power);
-        // target.PlayHit();
-        //
-        // yield return new WaitForSeconds(0.5f);
-        //
-        // if (target.IsDead())
-        // {
-        //     target.PlayDeath();
-        //     yield return new WaitForSeconds(0.5f);
-        // }
-        //
-        // battle.OnEnemyTurn();
-
-        yield return new NotImplementedException();
+        var player = battle.GetCurrentUnitAs<PlayerUnit>();
+        
+        if(player == null)
+        {
+            Debug.LogError("Something went wrong");
+        }
+        
+        player.PlayAttack();
+        yield return new WaitForSeconds(1f);
+        
+        targetEnemy.TakeDamage(move.power);
+        targetEnemy.PlayHit();
+        
+        yield return new WaitForSeconds(1.5f);
+        
+        if (targetEnemy.IsDead)
+        {
+            targetEnemy.PlayDeath();
+            yield return new WaitForSeconds(0.5f);
+        }
+        
+        battle.OnTurnEnded();
     }
 }
 

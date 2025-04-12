@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class EnemyUnit : Unit
 {
-    public void PlayAttack()
+    public MoveSO GetRandomMove()
+    {
+        return moves[Random.Range(0, moves.Count)];
+    }
+    
+    public override void PlayAttack()
     {
         Debug.Log("Playing enemy attack animation!");
         //throw new System.NotImplementedException();
     }
-
-    public MoveSO GetRandomMove()
+    
+    public override void PlayHit()
     {
-        return moves[Random.Range(0, moves.Count)];
+        Debug.Log("Playing enemy hit animation!");
+    }
+
+    public override void PlayDeath()
+    {
+        Debug.Log("Playing enemy death animation!");
     }
 }

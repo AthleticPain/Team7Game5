@@ -13,26 +13,32 @@ public class EnemyTurnState : BattleStateBase
 
     private IEnumerator EnemyTurn()
     {
-        var enemy = battle.GetCurrentEnemyUnit();
+        var enemy = battle.GetCurrentUnitAs<EnemyUnit>();
+
+        if (enemy == null)
+        {
+            Debug.LogError("Something went wrong");
+        }
+        
         var playerTarget = battle.GetRandomLivingPlayer();
         var move = enemy.GetRandomMove();
 
         enemy.PlayAttack();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         playerTarget.TakeDamage(move.power);
         playerTarget.PlayHit();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
 
-        if (playerTarget.unitState == UnitStateEnum.dead)
+        if (playerTarget.IsDead)
         {
             playerTarget.PlayDeath();
             yield return new WaitForSeconds(0.5f);
         }
 
         // Loop back to next player
-        battle.SetState(new PlayerActionSelectionState(battle));
+        battle.OnTurnEnded();
     }
 }
 
