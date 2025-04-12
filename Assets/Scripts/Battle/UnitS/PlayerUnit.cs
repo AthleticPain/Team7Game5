@@ -7,12 +7,14 @@ public class PlayerUnit : Unit
     public void PlayHit()
     {
         //Play hit animation here
-        throw new System.NotImplementedException();
+        Debug.Log("Playing player taking damage animation");
+        //throw new System.NotImplementedException();
     }
 
     public void PlayDeath()
     {
         //Play death animation here
-        throw new System.NotImplementedException();
+        Debug.Log("Playing player death animation");
+        //throw new System.NotImplementedException();
     }
 }

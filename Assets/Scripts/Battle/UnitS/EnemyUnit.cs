@@ -6,7 +6,8 @@ public class EnemyUnit : Unit
 {
     public void PlayAttack()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Playing enemy attack animation!");
+        //throw new System.NotImplementedException();
     }
 
     public MoveSO GetRandomMove()

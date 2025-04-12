@@ -5,15 +5,16 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     //Stats
-    protected int maxHP;
-    protected int currentHP;
+    [SerializeField] protected int maxHP;
+    [SerializeField] protected int currentHP;
 
-    protected List<MoveSO> moves;
+    [SerializeField] protected List<MoveSO> moves;
     
     public UnitStateEnum unitState;
 
     public void TakeDamage(int power)
     {
+        Debug.Log("Player takes " + power + " damage!");
         currentHP -= power;
     }
 }
