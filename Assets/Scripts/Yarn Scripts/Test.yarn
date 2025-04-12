@@ -1,0 +1,14 @@
+﻿title: Test
+tags:
+---
+<<ChangeCharacterSprite 0>>
+Character One: Hey I'm One
+<<ChangeCharacterSprite 1>>
+Character Two: Yeah, well I'm Two
+Character Two: And I be talking...
+<<ChangeCharacterSprite 0>>
+Character One: That's cool!
+<<ChangeCharacterSprite -1>>
+The two characters really were... two characters.
+<<LoadSceneByName MainMenu>>
+===
