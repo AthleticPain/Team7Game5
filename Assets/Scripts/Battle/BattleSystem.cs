@@ -11,6 +11,7 @@ public class BattleSystem : MonoBehaviour
 {
     private BattleStateBase currentState;
 
+    [SerializeField] private BattleUIManager battleUIManager;
     [SerializeField] List<EnemyUnit> enemyUnits;
     [SerializeField] List<PlayerUnit> playerUnits;
     [SerializeField] List<Unit> unitsInTurnOrder;
@@ -27,6 +28,11 @@ public class BattleSystem : MonoBehaviour
         currentState?.Exit();
         currentState = newState;
         currentState.Enter();
+
+        if (!(currentState is PlayerActionSelectionState))
+        {
+            battleUIManager.HidePlayerActionsPanel();
+        }
 
         currentStateName = currentState.GetType().Name;
     }
@@ -70,6 +76,7 @@ public class BattleSystem : MonoBehaviour
         string endingStatement = win ? "You win!" : "You lose!";
         Debug.Log("Battle Ended. " + endingStatement);
         SetState(new BattleEndState(this));
+        battleUIManager.ShowGameOverPanel(endingStatement);
     }
 
     //Called when player or enemy ends their turn
@@ -129,6 +136,7 @@ public class BattleSystem : MonoBehaviour
     public void ShowActionMenu()
     {
         //Player action UI logic here
+        battleUIManager.ShowPlayerActionsPanel();
     }
 
     //Returns the current unit as type T
