@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Unit : MonoBehaviour
 {
+    //References
+    [SerializeField] private UnitVisuals unitVisuals;
     //Stats
     [SerializeField] protected int maxHP;
     [SerializeField] protected int currentHP;
@@ -20,6 +23,7 @@ public abstract class Unit : MonoBehaviour
     public void TakeDamage(int power)
     {
         currentHP -= power;
+        unitVisuals?.UpdateHealthBar(currentHP, maxHP);
         Debug.Log(name + " takes " + power + " damage!\nRemaining HP: " + currentHP + "/" + maxHP);
 
         if (currentHP <= 0)
@@ -29,7 +33,19 @@ public abstract class Unit : MonoBehaviour
         }
     }
 
-    public abstract void PlayHit();
-    public abstract void PlayDeath();
-    public abstract void PlayAttack();
+    public virtual void PlayHit()
+    {
+        Debug.Log($"Playing hit animation for {name}");
+        unitVisuals?.PlayHit();
+    }
+    public virtual void PlayDeath()
+    {
+        Debug.Log($"Playing death animation for {name}");
+        unitVisuals?.PlayDeath();
+    }
+    public virtual void PlayAttack()
+    {
+        Debug.Log($"Playing attack animation for {name}");
+        unitVisuals?.PlayAttack();
+    }
 }
