@@ -7,6 +7,7 @@ public abstract class Unit : MonoBehaviour
 {
     //References
     [SerializeField] private UnitVisuals unitVisuals;
+
     //Stats
     [SerializeField] protected int maxHP;
     [SerializeField] protected int currentHP;
@@ -22,7 +23,7 @@ public abstract class Unit : MonoBehaviour
 
     public void TakeDamage(int power)
     {
-        currentHP -= power;
+        currentHP = Mathf.Max(0, currentHP - power);
         unitVisuals?.UpdateHealthBar(currentHP, maxHP);
         Debug.Log(name + " takes " + power + " damage!\nRemaining HP: " + currentHP + "/" + maxHP);
 
@@ -38,11 +39,13 @@ public abstract class Unit : MonoBehaviour
         Debug.Log($"Playing hit animation for {name}");
         unitVisuals?.PlayHit();
     }
+
     public virtual void PlayDeath()
     {
         Debug.Log($"Playing death animation for {name}");
         unitVisuals?.PlayDeath();
     }
+
     public virtual void PlayAttack()
     {
         Debug.Log($"Playing attack animation for {name}");

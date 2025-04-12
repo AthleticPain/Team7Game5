@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   moveName: Attack
-  power: 2
+  power: 3
