@@ -40,7 +40,8 @@ public class BattleSystem : MonoBehaviour
     private void Start()
     {
         currentTurnIndex = -1;
-        OnTurnEnded(); //Increments turn index and sets state according to player or enemy turn
+        Invoke(nameof(OnTurnEnded), 1); //Increments turn index and sets state according to player or enemy turn
+        //OnTurnEnded(); 
     }
 
     //Call the update function of current state
