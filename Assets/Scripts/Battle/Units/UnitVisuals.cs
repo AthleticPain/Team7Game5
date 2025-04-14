@@ -20,4 +20,5 @@ public class UnitVisuals : MonoBehaviour
     public void PlayHit() => animator?.SetTrigger("Hit");
     public void PlayDeath() => animator?.SetTrigger("Die");
     public void PlayAttack() => animator?.SetTrigger("Attack");
+    public void PlayHighlightTurn() => animator?.SetTrigger("HighlightTurn");
 }

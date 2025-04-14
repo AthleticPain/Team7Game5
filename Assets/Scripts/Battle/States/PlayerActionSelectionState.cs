@@ -12,6 +12,7 @@ public class PlayerActionSelectionState : BattleStateBase
         
         //Show battle UI here
         battle.ShowActionMenu();
+        battle.HighlightPlayerUnit();
     }
 
     public override void Update()

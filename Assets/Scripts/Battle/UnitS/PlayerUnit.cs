@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerUnit : Unit
 {
+    public void PlayHighlightAnimation()
+    {
+        //Play Highlight Animation Here
+        unitVisuals?.PlayHighlightTurn();
+    }
+    
     // public override void PlayHit()
     // {
     //     //Play hit animation here

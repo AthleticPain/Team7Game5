@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Unit : MonoBehaviour
 {
     //References
-    [SerializeField] private UnitVisuals unitVisuals;
+    [SerializeField] protected UnitVisuals unitVisuals;
 
     //Stats
     [SerializeField] protected int maxHP;

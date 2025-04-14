@@ -140,6 +140,11 @@ public class BattleSystem : MonoBehaviour
         battleUIManager.ShowPlayerActionsPanel();
     }
 
+    public void HighlightPlayerUnit()
+    {
+        GetCurrentUnitAs<PlayerUnit>().PlayHighlightAnimation();
+    }
+
     //Returns the current unit as type T
     public T GetCurrentUnitAs<T>() where T : Unit
     {
