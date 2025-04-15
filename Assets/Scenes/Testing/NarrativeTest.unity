@@ -1495,9 +1495,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPortraits:
-  - {fileID: 21300000, guid: 520af78155fa7e240a323f93a4748512, type: 3}
-  - {fileID: 21300000, guid: 6c2ec560a8f113c4a87b9ec9dd44a86f, type: 3}
-  startNode: Test
+  - {fileID: 21300000, guid: cb4c982adebf3844c8676f1450a5c5be, type: 3}
+  - {fileID: 21300000, guid: 75e2b2d280b01f44ab80638b0f8cdd42, type: 3}
+  - {fileID: 21300000, guid: ed03668febf288c46aee8d7d8823a703, type: 3}
+  startNode: Intro
   startAutomatically: 1
   dialogueRunner: {fileID: 4710893357691815257}
   activeCharacterPortrait: {fileID: 1057087555}

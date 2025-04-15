@@ -1,0 +1,30 @@
+﻿title: Intro
+tags:
+---
+<<ChangeCharacterSprite 1>>
+AXEL: Road’s clear for once.
+<<ChangeCharacterSprite 0>>
+JUNO: Maybe all those mechanical nightmares are in sleep mode.
+<<ChangeCharacterSprite 1>>
+AXEL: I doubt it, those machines are always planning something…
+<<ChangeCharacterSprite 0>>
+JUNO: What do you think Sprocket? Are the big bad robots powered down?
+<<ChangeCharacterSprite 2>>
+SPROCKET: Woof!
+<<ChangeCharacterSprite 0>>
+JUNO: See? Sprocket agrees.
+<<ChangeCharacterSprite 1>>
+AXEL: Sprocket agrees with you on everything Juno…
+<<ChangeCharacterSprite 0>>
+JUNO: Hehe that’s cause I sneak him treats!
+JUNO: …And I because I don’t sharpen weapons next to his head.
+<<ChangeCharacterSprite 1>>
+AXEL: Hey! You can’t be too cautious out here!
+AXEL: One of those damn clankers could come out at any moment!
+<<ChangeCharacterSprite 0>>
+JUNO: Alright Axel... keep maintaining that personal arsenal.
+JUNO: Sprocket and I will keep our eyes on the road.
+<<ChangeCharacterSprite 2>>
+SPROCKET: Woof! Woof!
+<<LoadSceneByName MainMenu>>
+===
