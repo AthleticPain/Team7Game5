@@ -209,5 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2c00083141b99439263df1509de1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeType: Gas
   nodeIndex: 0
+  nodeType: Gas
+  eventImage: {fileID: 21300000, guid: 34bbefccd69877149b2dd98c240afa00, type: 3}
+  eventDescription: Car goes vroom vroom
+  eventDescriptionAlt: 

@@ -134,8 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2c00083141b99439263df1509de1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeType: Food
   nodeIndex: 0
+  nodeType: Food
+  eventImage: {fileID: 3351748369286481944, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
+  eventDescription: mmmmm food
+  eventDescriptionAlt: 
 --- !u!1 &5967580194825669827
 GameObject:
   m_ObjectHideFlags: 0

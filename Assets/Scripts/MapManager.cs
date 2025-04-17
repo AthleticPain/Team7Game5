@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,13 +11,20 @@ public class MapManager : MonoBehaviour
 
     [Header("Map Settings")]
     public List<GameObject> currentNodes = new List<GameObject>();
+    public int FightPercent = 50;
 
-    [Header("Components")]
+    [Header("Map Components")]
     public GameObject mapLayerOne;
     public GameObject mapLayerTwo;
     public GameObject mapLayerThree;
     [SerializeField] GameObject mapBG;
     [SerializeField] GameObject[] mapNodePrefabs;
+
+    [Header("Event Components")]
+    public GameObject eventWindow;
+    public Image eventImage;
+    public TextMeshProUGUI eventText;
+    public Button[] eventButtons;
 
     void Awake()
     {
@@ -142,5 +150,39 @@ public class MapManager : MonoBehaviour
                 nodeScript.nodeIndex = i;
             }
         }
+    }
+
+    public void CreateEvent(Sprite image, string eventDescription, int buttonIndex)
+    {
+        Debug.Log(buttonIndex);
+
+        // Set Event Image
+        eventImage.sprite = image;
+
+        // Set Event Text
+        eventText.text = eventDescription;
+
+        // Set Buttons
+        for (int i = 0; i < eventButtons.Length; i++)
+        {
+            eventButtons[i].gameObject.SetActive(false);
+        }
+        eventButtons[buttonIndex].gameObject.SetActive(true);
+        eventWindow.SetActive(true);
+    }
+
+    public void CloseEvent()
+    {
+        eventWindow.SetActive(false);
+    }
+
+    public void EnterRest()
+    {
+        // TODO
+    }
+    
+    public void EnterFight()
+    {
+        // TODO
     }
 }

@@ -16,6 +16,7 @@ public class NarrativeHandler : MonoBehaviour
     [Header("Components")]
     [SerializeField] private DialogueRunner dialogueRunner;
     [SerializeField] private Image activeCharacterPortrait;
+    [SerializeField] private GameObject narrativeCanvas;
      private void Awake()
     {
         AddYarnCommands();
@@ -40,6 +41,7 @@ public class NarrativeHandler : MonoBehaviour
         dialogueRunner.AddCommandHandler("YarnTest", () => YarnTest());
         dialogueRunner.AddCommandHandler<int>("ChangeCharacterSprite", ChangeCharacterSprite);
         dialogueRunner.AddCommandHandler<string>("LoadSceneByName", LoadSceneByName);
+        dialogueRunner.AddCommandHandler<bool>("LoadNarrative", LoadNarrative);
     }
 
     private void YarnTest()
@@ -58,4 +60,5 @@ public class NarrativeHandler : MonoBehaviour
         }
     }
     private void LoadSceneByName(string sceneName) => SceneManager.LoadScene(sceneName);
+    private void LoadNarrative(bool isActive) => narrativeCanvas.SetActive(isActive);
 }
