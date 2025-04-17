@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
-public class UnitVisuals : MonoBehaviour
+public class UnitVisuals : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
     [SerializeField] private Animator animator;
     [SerializeField] private Image healthBar;
     [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private GameObject[] dimOverlays;
+    
+    [HideInInspector] public UnityEvent OnPointerEntered = new UnityEvent();
+    [HideInInspector] public UnityEvent OnPointerClicked = new UnityEvent();
 
     public void UpdateHealthBar(int current, int max)
     {
@@ -21,4 +28,23 @@ public class UnitVisuals : MonoBehaviour
     public void PlayDeath() => animator?.SetTrigger("Die");
     public void PlayAttack() => animator?.SetTrigger("Attack");
     public void PlayHighlightTurn() => animator?.SetTrigger("HighlightTurn");
+
+    public void SetDimOverlays(bool overlayActive)
+    {
+        foreach (var dimOverlay in dimOverlays)
+        {
+            dimOverlay.SetActive(overlayActive);
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log($"Pointer entered {name}");
+        OnPointerEntered?.Invoke();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnPointerClicked?.Invoke();
+    }
 }

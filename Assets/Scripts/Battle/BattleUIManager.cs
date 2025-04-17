@@ -9,7 +9,10 @@ public class BattleUIManager : MonoBehaviour
     [SerializeField] private RectTransform playerActionsPanel;
     [SerializeField] private RectTransform gameOverPanel;
     [SerializeField] private TMP_Text gameOverText;
+    [SerializeField] private GameObject dimOverlayBG;
 
+    public void SetDimBackground(bool dimBackgroundActive) => dimOverlayBG.SetActive(dimBackgroundActive);
+    
     public void ShowPlayerActionsPanel()
     {
         //DoTween player actions panel in

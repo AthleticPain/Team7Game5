@@ -55,15 +55,26 @@ public class BattleSystem : MonoBehaviour
         SetState(new PlayerActionSelectionState(this));
     }
 
-    public void OnPlayerChosenMove(MoveSO move)
+    //When player selects their move, move to target selection state
+    public void OnPlayerMoveSelected(int moveIndex)
     {
-        //TODO: Remove temporary hardcoded enemy and make it dynamic
-        EnemyUnit targetEnemy = enemyUnits[0];
-
-        //Only allow this to happen when it is player's turn
         if (currentState is PlayerActionSelectionState)
         {
-            SetState(new PlayerMoveExecutionState(this, move, targetEnemy));
+            PlayerUnit currentPlayerUnit = unitsInTurnOrder[currentTurnIndex] as PlayerUnit;
+            MoveSO selectedMove = currentPlayerUnit.Moves[currentPlayerUnit.selectedMoveIndex];
+            SetState(new PlayerTargetSelectionState(this, battleUIManager, enemyUnits, playerUnits, selectedMove));
+        }
+    }
+
+    public void OnPlayerTargetConfirmed(EnemyUnit targetEnemy, MoveSO selectedMove)
+    {
+        //TODO: Remove temporary hardcoded enemy and make it dynamic
+        //EnemyUnit targetEnemy = enemyUnits[0];
+
+        //Only allow this to happen when it is player's turn
+        if (currentState is PlayerTargetSelectionState)
+        {
+            SetState(new PlayerMoveExecutionState(this, selectedMove, targetEnemy));
         }
     }
 
@@ -86,9 +97,9 @@ public class BattleSystem : MonoBehaviour
         //Check if game over conditions are met
         if (IsBattleOver())
             return;
-        
+
         //If game is not over, find next living unit's turn
-        AdvanceToNextLivingUnit(); 
+        AdvanceToNextLivingUnit();
         var currentUnit = unitsInTurnOrder[currentTurnIndex];
         Debug.Log(currentUnit.name + "'s Turn!");
 
