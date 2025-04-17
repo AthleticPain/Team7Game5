@@ -4966,6 +4966,7 @@ MonoBehaviour:
   startAutomatically: 1
   dialogueRunner: {fileID: 1773865139}
   activeCharacterPortrait: {fileID: 1437819042}
+  narrativeCanvas: {fileID: 1007370786}
 --- !u!114 &1773865138
 MonoBehaviour:
   m_ObjectHideFlags: 0

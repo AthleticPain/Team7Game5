@@ -180,7 +180,7 @@ public class MapManager : MonoBehaviour
     {
         // TODO
     }
-    
+
     public void EnterFight()
     {
         // TODO
