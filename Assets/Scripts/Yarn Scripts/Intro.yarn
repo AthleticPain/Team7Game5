@@ -1,6 +1,7 @@
 ﻿title: Intro
 tags:
 ---
+<<LoadNarrative true>>
 <<ChangeCharacterSprite 1>>
 AXEL: Road’s clear for once.
 <<ChangeCharacterSprite 0>>
@@ -26,5 +27,5 @@ JUNO: Alright Axel... keep maintaining that personal arsenal.
 JUNO: Sprocket and I will keep our eyes on the road.
 <<ChangeCharacterSprite 2>>
 SPROCKET: Woof! Woof!
-<<LoadSceneByName MainMenu>>
+<<LoadNarrative false>>
 ===

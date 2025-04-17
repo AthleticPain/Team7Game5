@@ -134,8 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2c00083141b99439263df1509de1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeType: Fight
   nodeIndex: 0
+  nodeType: Fight
+  eventImage: {fileID: 21300000, guid: 44a054df1702e39458b7072b08d0f212, type: 3}
+  eventDescription: You be fighting
+  eventDescriptionAlt: 
 --- !u!1 &6084903077838118433
 GameObject:
   m_ObjectHideFlags: 0
