@@ -5,19 +5,37 @@ using UnityEngine.UI;
 
 public class EnemyUnitVisuals : UnitVisuals
 {
-    [SerializeField] private Image enemyImage;
-    [SerializeField] private Outline highlightOutline;
+    [SerializeField] private GameObject targetSymbol;
+    [SerializeField] private Shadow shadow;
 
-    public Unit Unit { get; private set; }
-
-    public void Initialize(Unit unit)
+    public override void SetVisualState(VisualState state)
     {
-        Unit = unit;
+        switch (state)
+        {
+            case VisualState.normal:
+                SetDimOverlays(false);
+                SetTarget(false);
+                SetShadow(false);
+                SetScaleUniformly(1);
+                break;
+            case VisualState.dimmed:
+                SetDimOverlays(true);
+                SetTarget(false);
+                SetShadow(false);
+                SetScaleUniformly(1);
+                break;
+            case VisualState.targeted:
+                SetDimOverlays(false);
+                SetTarget(true);
+                SetShadow(true);
+                SetScaleUniformly(1.05f);
+                break;
+        }
     }
 
-    public void SetHighlighted(bool highlighted)
-    {
-        highlightOutline.enabled = highlighted;
-        enemyImage.color = highlighted ? Color.white : new Color(0.5f, 0.5f, 0.5f, 1f); // dim if not highlighted
-    }
+    private void SetTarget(bool targetActive) => targetSymbol.SetActive(targetActive);
+
+    private void SetShadow(bool shadowActive) => shadow.enabled = shadowActive;
+    
+    private void SetScaleUniformly(float scale) => transform.localScale = new Vector3(scale, scale, scale);
 }

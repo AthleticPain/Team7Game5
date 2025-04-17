@@ -7,7 +7,7 @@ public class PlayerTargetSelectionState : BattleStateBase
     private BattleUIManager uiManager;
     private List<EnemyUnit> enemies;
     private List<PlayerUnit> players;
-    private EnemyUnit selectedTarget;
+    private EnemyUnit selectedEnemyTarget;
     private PlayerUnit currentPlayer;
     private MoveSO currentlySelectedMove;
 
@@ -22,12 +22,12 @@ public class PlayerTargetSelectionState : BattleStateBase
 
     public override void Enter()
     {
-        selectedTarget = enemies[0];
+        selectedEnemyTarget = enemies[0];
         currentPlayer = battle.GetCurrentUnitAs<PlayerUnit>();
 
         uiManager.SetDimBackground(true);
 
-        DimNonTargetedEnemies();
+        UpdateEnemyVisuals();
 
         // for (int i = 0; i < enemies.Count; i++)
         // {
@@ -43,20 +43,27 @@ public class PlayerTargetSelectionState : BattleStateBase
             enemy.unitVisuals.OnPointerClicked.AddListener(() => ConfirmTarget(enemy));
         }
 
-        DimNonTargetedEnemies();
+        UpdateEnemyVisuals();
 
         foreach (var player in players)
         {
             if (player == currentPlayer) continue;
-            player.unitVisuals.SetDimOverlays(true);
+            player.unitVisuals.SetVisualState(UnitVisuals.VisualState.dimmed);
         }
     }
 
-    private void DimNonTargetedEnemies()
+    private void UpdateEnemyVisuals()
     {
         foreach (var enemy in enemies)
         {
-            enemy.unitVisuals.SetDimOverlays(enemy != selectedTarget);
+            if (enemy == selectedEnemyTarget)
+            {
+                enemy.unitVisuals.SetVisualState(UnitVisuals.VisualState.targeted);
+            }
+            else
+            {
+                enemy.unitVisuals.SetVisualState(UnitVisuals.VisualState.dimmed);
+            }
         }
     }
 
@@ -66,21 +73,21 @@ public class PlayerTargetSelectionState : BattleStateBase
 
         foreach (EnemyUnit enemy in enemies)
         {
-            enemy.unitVisuals.SetDimOverlays(false);
+            enemy.unitVisuals.SetVisualState(UnitVisuals.VisualState.normal);
             enemy.unitVisuals.OnPointerEntered.RemoveAllListeners();
         }
 
         foreach (var player in players)
         {
-            player.unitVisuals.SetDimOverlays(false);
+            player.unitVisuals.SetVisualState(UnitVisuals.VisualState.normal);
         }
     }
 
     private void ChangeTarget(EnemyUnit targetedEnemy)
     {
         Debug.Log($"Changing enemy to {targetedEnemy}");
-        selectedTarget = targetedEnemy;
-        DimNonTargetedEnemies();
+        selectedEnemyTarget = targetedEnemy;
+        UpdateEnemyVisuals();
     }
 
     private void ConfirmTarget(EnemyUnit targetEnemy)

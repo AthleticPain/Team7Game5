@@ -9,11 +9,18 @@ using UnityEngine.Serialization;
 
 public class UnitVisuals : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
+    public enum VisualState
+    {
+        normal,
+        dimmed,
+        targeted
+    }
+
     [SerializeField] private Animator animator;
     [SerializeField] private Image healthBar;
     [SerializeField] private TextMeshProUGUI hpText;
-    [SerializeField] private GameObject[] dimOverlays;
-    
+    [SerializeField] protected GameObject[] dimOverlays;
+
     [HideInInspector] public UnityEvent OnPointerEntered = new UnityEvent();
     [HideInInspector] public UnityEvent OnPointerClicked = new UnityEvent();
 
@@ -29,7 +36,23 @@ public class UnitVisuals : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     public void PlayAttack() => animator?.SetTrigger("Attack");
     public void PlayHighlightTurn() => animator?.SetTrigger("HighlightTurn");
 
-    public void SetDimOverlays(bool overlayActive)
+    public virtual void SetVisualState(VisualState state)
+    {
+        switch (state)
+        {
+            case VisualState.normal:
+                SetDimOverlays(false);
+                break;
+            case VisualState.dimmed:
+                SetDimOverlays(true);
+                break;
+            case VisualState.targeted:
+                SetDimOverlays(false);
+                break;
+        }
+    }
+
+    protected void SetDimOverlays(bool overlayActive)
     {
         foreach (var dimOverlay in dimOverlays)
         {
