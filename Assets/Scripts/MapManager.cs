@@ -124,6 +124,9 @@ public class MapManager : MonoBehaviour
         // Reassign layers based on new node positions
         ReassignNodeLayers();
 
+        // Save Data
+        
+
         // Reactivate buttons
         SetNodeActivation();
     }
