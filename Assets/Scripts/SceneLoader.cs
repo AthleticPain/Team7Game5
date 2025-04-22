@@ -5,5 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public void ChangeSceneByName(string sceneName) => SceneManager.LoadScene(sceneName); 
+    public void ChangeSceneByName(string sceneName)
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(sceneName);
+    }
 }
