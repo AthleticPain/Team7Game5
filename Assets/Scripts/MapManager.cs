@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//Make sure the ordering here matches the prefab list order
 public enum MapNodeType
 {
     Fight = 0,
