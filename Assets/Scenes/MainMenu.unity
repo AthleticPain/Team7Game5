@@ -4235,7 +4235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86e278953a39954e8649881bbffb1c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuPanel: {fileID: 23635138}
   creditsPanel: {fileID: 1595830681}
 --- !u!4 &1393196031
 Transform:
