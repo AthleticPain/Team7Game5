@@ -27,6 +27,17 @@ public class MapManager : MonoBehaviour
     public TextMeshProUGUI eventText;
     public Button[] eventButtons;
 
+    [Header("Resources")]
+    [SerializeField] private int startGas = 10;
+    [SerializeField] private int maxGas = 20;
+    [SerializeField] private int currentGas;
+
+    [SerializeField] private int startFood = 10;
+    [SerializeField] private int maxFood = 20;
+    [SerializeField] private int currentFood;
+    [SerializeField] private Slider gasSlider;
+    [SerializeField] private Slider foodSlider;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -53,6 +64,11 @@ public class MapManager : MonoBehaviour
             SpawnNodes(mapLayerTwo, 2);
             SpawnNodes(mapLayerThree, 3);
             SetNodeActivation();
+
+            // Set Stats
+            currentGas = Mathf.Clamp(startGas, 0, maxGas);
+            currentFood = Mathf.Clamp(startFood, 0, maxFood);
+            UpdateResourceUI();
 
             // Play Dialogue
             NarrativeHandler.Instance.StartDialogue("Intro");
@@ -137,8 +153,11 @@ public class MapManager : MonoBehaviour
         // Reassign layers based on new node positions
         ReassignNodeLayers();
 
+        // Use Gas
+        UseGas(1);
+
         // Save Data
-        
+        //PlayerStatsManager.Instance.currentMapNodes
 
         // Reactivate buttons
         SetNodeActivation();
@@ -195,6 +214,7 @@ public class MapManager : MonoBehaviour
 
     public void EnterRest()
     {
+        UseFood(5);
         NarrativeHandler.Instance.LoadRestDialogue();
         CloseEvent();
     }
@@ -203,5 +223,27 @@ public class MapManager : MonoBehaviour
     {
         // TODO
         SceneManager.LoadScene("BattleScene");
+    }
+
+    public void UseGas(int amount)
+    {
+        currentGas = Mathf.Max(currentGas - amount, 0);
+        UpdateResourceUI();
+    }
+
+    public void UseFood(int amount)
+    {
+        currentFood = Mathf.Max(currentFood - amount, 0);
+        UpdateResourceUI();
+    }
+
+
+    public void UpdateResourceUI()
+    {
+        gasSlider.maxValue = maxGas;
+        gasSlider.value = currentGas;
+
+        foodSlider.maxValue = maxFood;
+        foodSlider.value = currentFood;
     }
 }
