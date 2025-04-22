@@ -1,0 +1,10 @@
+﻿title: AxelTest
+tags:
+---
+<<LoadNarrative true>>
+<<ChangeCharacterSprite 1>>
+Axel: This is a Axel Rest Test
+<<ChangeCharacterSprite 2>>
+Insert stuff here about stats
+<<LoadNarrative false>>
+===

@@ -1,0 +1,10 @@
+﻿title: JunoTest
+tags:
+---
+<<LoadNarrative true>>
+<<ChangeCharacterSprite 0>>
+JUNO: This is a Juno Rest Test
+<<ChangeCharacterSprite 2>>
+Insert stuff here about stats
+<<LoadNarrative false>>
+===

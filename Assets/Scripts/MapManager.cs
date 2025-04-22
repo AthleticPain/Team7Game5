@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
@@ -42,10 +41,23 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-        SpawnNodes(mapLayerOne, 1);
-        SpawnNodes(mapLayerTwo, 2);
-        SpawnNodes(mapLayerThree, 3);
-        SetNodeActivation();
+        if(PlayerStatsManager.Instance.runStarted)
+        {
+            // TODO: Load Data
+        }else{
+            // Start Run
+            Debug.Log("New Run Started");
+            PlayerStatsManager.Instance.runStarted = true;
+
+            SpawnNodes(mapLayerOne, 1);
+            SpawnNodes(mapLayerTwo, 2);
+            SpawnNodes(mapLayerThree, 3);
+            SetNodeActivation();
+
+            // Play Dialogue
+            NarrativeHandler.Instance.StartDialogue("Intro");
+            
+        }
     }
     public void SetNodeActivation()
     {
@@ -183,7 +195,8 @@ public class MapManager : MonoBehaviour
 
     public void EnterRest()
     {
-        // TODO
+        NarrativeHandler.Instance.LoadRestDialogue();
+        CloseEvent();
     }
 
     public void EnterFight()

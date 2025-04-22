@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class NarrativeHandler : MonoBehaviour
 {
+    public static NarrativeHandler Instance {get; private set;}
+
     [Header("Dialogue Settings")]
     [SerializeField] private Sprite[] characterPortraits;
     [SerializeField] private string startNode = "";
@@ -17,8 +19,24 @@ public class NarrativeHandler : MonoBehaviour
     [SerializeField] private DialogueRunner dialogueRunner;
     [SerializeField] private Image activeCharacterPortrait;
     [SerializeField] private GameObject narrativeCanvas;
-     private void Awake()
+
+    [Header("Rest Dialogue Settings")]
+    [SerializeField] private string[] restDialogue;
+    [SerializeField] private List<string> shuffledRestDialogue;
+    [SerializeField] private int restDialogueIndex = 0;
+
+    private void Awake()
     {
+        // Singleton
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         AddYarnCommands();
     }
 
@@ -28,6 +46,7 @@ public class NarrativeHandler : MonoBehaviour
         {
             StartDialogue(startNode);
         }
+        ShuffleRestDialogue();
     }
 
     public void StartDialogue(string node)
@@ -45,6 +64,33 @@ public class NarrativeHandler : MonoBehaviour
         }
     }
 
+    // Shuffle the dialogue order
+    private void ShuffleRestDialogue()
+    {
+        shuffledRestDialogue = new List<string>(restDialogue);
+        for (int i = 0; i < shuffledRestDialogue.Count; i++)
+        {
+            string temp = shuffledRestDialogue[i];
+            int randomIndex = Random.Range(i, shuffledRestDialogue.Count);
+            shuffledRestDialogue[i] = shuffledRestDialogue[randomIndex];
+            shuffledRestDialogue[randomIndex] = temp;
+        }
+    }
+
+    // Load randomized rest dialogue in order
+    public void LoadRestDialogue()
+    {
+        // If we’ve reached the end, reshuffle and reset index
+        if (restDialogueIndex >= shuffledRestDialogue.Count)
+        {
+            ShuffleRestDialogue();
+            restDialogueIndex = 0;
+        }
+
+        string nodeToPlay = shuffledRestDialogue[restDialogueIndex];
+        StartDialogue(nodeToPlay);
+        restDialogueIndex++;
+    }
 
     // Converts Functions to Yarn Commands
     private void AddYarnCommands()

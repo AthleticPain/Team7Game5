@@ -7,15 +7,15 @@ public class PlayerStatsManager : MonoBehaviour
     public static PlayerStatsManager Instance { get; private set; }
 
     [Header("Map Data")]
-    public MapNode[] currentMapNodes;
-    public int nodesTraveled;
-    public string[] restDialogue;
-    public int currentGas;
-    public int currentFood;
+    [SerializeField] public MapNode[] currentMapNodes;
+    [SerializeField] public int nodesTraveled;
+    [SerializeField] public int currentGas;
+    [SerializeField] public int currentFood;
+    [SerializeField] public bool runStarted;
 
     [Header("Character Stats")]
-    public int junoCurrentHP;
-    public int axelCurrentHP;
+    [SerializeField] public int junoCurrentHP;
+    [SerializeField] public int axelCurrentHP;
 
     private void Awake()
     {
@@ -45,5 +45,10 @@ public class PlayerStatsManager : MonoBehaviour
         PlayerPrefs.SetInt("AxelHP", axelCurrentHP);
 
         PlayerPrefs.Save();
+    }
+
+    public void LoadPlayerData()
+    {
+        Debug.Log("Loading Player Data...");
     }
 }
