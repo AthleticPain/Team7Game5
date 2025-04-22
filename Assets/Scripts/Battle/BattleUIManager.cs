@@ -32,9 +32,19 @@ public class BattleUIManager : MonoBehaviour
             .SetEase(Ease.InBack);
     }
 
-    public void ShowGameOverPanel(string gameOverTextMessage)
+    public void ShowGameOverPanel(bool win)
     {
-        gameOverText.text = gameOverTextMessage;
-        gameOverPanel.gameObject.SetActive(true);
+        if (win)
+        {
+            //Win panel
+            gameOverPanel.transform.GetChild(0).gameObject.SetActive(true);
+            gameOverPanel.gameObject.SetActive(true);
+        }
+        else
+        {
+            //Lose panel
+            gameOverPanel.transform.GetChild(1).gameObject.SetActive(true);
+            gameOverPanel.gameObject.SetActive(true);
+        }
     }
 }
