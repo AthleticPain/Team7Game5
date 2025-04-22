@@ -4219,6 +4219,7 @@ MonoBehaviour:
   - {fileID: 1974589422060455397, guid: f17f583159fba594b9e5b16e496da621, type: 3}
   - {fileID: 3452369834959696027, guid: 4484c6ada975c4b41a6b1dcd8b4f19c7, type: 3}
   - {fileID: 9194030037534079319, guid: e62d9fd02fd50084baa6eff8953825cf, type: 3}
+  - {fileID: 9194030037534079319, guid: 6aa81f200e4d07f4bb425b183dff4bcf, type: 3}
   eventWindow: {fileID: 1202457812}
   eventImage: {fileID: 897156576}
   eventText: {fileID: 842374815}
