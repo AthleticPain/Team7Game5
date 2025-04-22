@@ -35,6 +35,17 @@ public class NarrativeHandler : MonoBehaviour
         dialogueRunner.StartDialogue(node);
     }
 
+    // For Skipping the Dialouge
+    public void StopDialogue()
+    {
+        if (dialogueRunner.IsDialogueRunning)
+        {
+            dialogueRunner.Stop();
+            narrativeCanvas.SetActive(false);
+        }
+    }
+
+
     // Converts Functions to Yarn Commands
     private void AddYarnCommands()
     {
