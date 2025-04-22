@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MapNode : MonoBehaviour
 {
     public int nodeIndex;
-    public string nodeType;
+    public MapNodeType nodeType;
     public Sprite eventImage;
     public string eventDescription;
     public string eventDescriptionAlt;
@@ -30,19 +30,19 @@ public class MapNode : MonoBehaviour
     {
         switch(nodeType)
         {
-            case "Gas":
+            case MapNodeType.Gas:
                 MapManager.Instance.CreateEvent(eventImage, eventDescription, 0);
                 break;
-            case "Food":
+            case MapNodeType.Food:
                 MapManager.Instance.CreateEvent(eventImage, eventDescription, 0);
                 break;
-            case "Fight":
+            case MapNodeType.Fight:
                 MapManager.Instance.CreateEvent(eventImage, eventDescription, 1);
                 break;
-            case "Rest":
+            case MapNodeType.Rest:
                 MapManager.Instance.CreateEvent(eventImage, eventDescription, 2);
                 break;
-            case "Water":
+            case MapNodeType.Water:
                 MapManager.Instance.CreateEvent(eventImage, eventDescription, 0);
                 break;
         }

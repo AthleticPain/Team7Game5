@@ -4223,6 +4223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentNodes: []
   FightPercent: 50
+  mapNodeSO: {fileID: 11400000, guid: 85f400e0f889dbf41a7ed88211c6aae7, type: 2}
   mapLayerOne: {fileID: 241832123}
   mapLayerTwo: {fileID: 1376585886}
   mapLayerThree: {fileID: 1543587447}
@@ -4239,6 +4240,14 @@ MonoBehaviour:
   - {fileID: 2003185900}
   - {fileID: 1721641949}
   - {fileID: 1348202393}
+  startGas: 10
+  maxGas: 20
+  currentGas: 0
+  startFood: 10
+  maxFood: 20
+  currentFood: 0
+  gasSlider: {fileID: 937093362}
+  foodSlider: {fileID: 1646887018}
 --- !u!1 &1376585886
 GameObject:
   m_ObjectHideFlags: 0

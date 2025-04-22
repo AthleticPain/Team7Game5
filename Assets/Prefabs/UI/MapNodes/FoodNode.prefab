@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 0
-  nodeType: Food
+  nodeType: 1
   eventImage: {fileID: 3351748369286481944, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
   eventDescription: mmmmm food
   eventDescriptionAlt: 

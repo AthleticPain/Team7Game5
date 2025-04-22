@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 0
-  nodeType: Rest
+  nodeType: 3
   eventImage: {fileID: 21300000, guid: e5ee1577642cd4b40a2b7272b6781bef, type: 3}
   eventDescription: bed make me go eepy
   eventDescriptionAlt: 

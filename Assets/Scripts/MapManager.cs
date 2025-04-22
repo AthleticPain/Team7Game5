@@ -5,30 +5,35 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public enum MapNodeType
+{
+    Fight = 0,
+    Food = 1,
+    Gas = 2,
+    Rest = 3,
+    Water = 4
+}
+
 public class MapManager : MonoBehaviour
 {
     public static MapManager Instance { get; private set; }
 
-
-    [Header("Map Settings")]
-    public List<GameObject> currentNodes = new List<GameObject>();
+    [Header("Map Settings")] public List<GameObject> currentNodes = new List<GameObject>();
     public int FightPercent = 50;
+    [SerializeField] private NodeDataScriptableObject mapNodeSO;
 
-    [Header("Map Components")]
-    public GameObject mapLayerOne;
+    [Header("Map Components")] public GameObject mapLayerOne;
     public GameObject mapLayerTwo;
     public GameObject mapLayerThree;
     [SerializeField] GameObject mapBG;
     [SerializeField] GameObject[] mapNodePrefabs;
 
-    [Header("Event Components")]
-    public GameObject eventWindow;
+    [Header("Event Components")] public GameObject eventWindow;
     public Image eventImage;
     public TextMeshProUGUI eventText;
     public Button[] eventButtons;
 
-    [Header("Resources")]
-    [SerializeField] private int startGas = 10;
+    [Header("Resources")] [SerializeField] private int startGas = 10;
     [SerializeField] private int maxGas = 20;
     [SerializeField] private int currentGas;
 
@@ -52,10 +57,13 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-        if(PlayerStatsManager.Instance.runStarted)
+        if (PlayerStatsManager.Instance.runStarted)
         {
             // TODO: Load Data
-        }else{
+            LoadMapNodesFromScriptableObject();
+        }
+        else
+        {
             // Start Run
             Debug.Log("New Run Started");
             PlayerStatsManager.Instance.runStarted = true;
@@ -72,9 +80,9 @@ public class MapManager : MonoBehaviour
 
             // Play Dialogue
             NarrativeHandler.Instance.StartDialogue("Intro");
-            
         }
     }
+
     public void SetNodeActivation()
     {
         for (int i = 0; i < currentNodes.Count; i++)
@@ -132,7 +140,7 @@ public class MapManager : MonoBehaviour
         {
             newBase
         };
-        
+
         newNodes.Add(currentNodes[next1Index]);
         newNodes.Add(currentNodes[next2Index]);
 
@@ -203,6 +211,7 @@ public class MapManager : MonoBehaviour
         {
             eventButtons[i].gameObject.SetActive(false);
         }
+
         eventButtons[buttonIndex].gameObject.SetActive(true);
         eventWindow.SetActive(true);
     }
@@ -222,6 +231,7 @@ public class MapManager : MonoBehaviour
     public void EnterFight()
     {
         // TODO
+        SaveMapNodesToScriptableObject();
         SceneManager.LoadScene("BattleScene");
     }
 
@@ -245,5 +255,48 @@ public class MapManager : MonoBehaviour
 
         foodSlider.maxValue = maxFood;
         foodSlider.value = currentFood;
+    }
+
+    //Writes nodes to scriptable object as a list of ints
+    void SaveMapNodesToScriptableObject()
+    {
+        mapNodeSO.savedNodes = ConvertNodesToIntList();
+    }
+
+    //Loads nodes from scriptable object and instantiates them
+    //Make sure that the indices in the enum are the same as the prefabs!!
+    void LoadMapNodesFromScriptableObject()
+    {
+        foreach (MapNodeType type in mapNodeSO.savedNodes)
+        {
+            GameObject prefab = mapNodePrefabs[(int)type]; // mapNodePrefabs must match enum order
+            
+            //TODO: Replace this block with the spawning logic you want to implement
+            GameObject instance = Instantiate(prefab);
+            currentNodes.Add(instance);
+        }
+    }
+
+    //Converts currentNodes to a list of ints based on MapNode enum
+    //If you want to change the indices of each mapnode change it in the MapNode enum at the top of this script
+    //Make sure that the indices in the enum are the same as the prefabs!!
+    public List<int> ConvertNodesToIntList()
+    {
+        List<int> nodeTypeList = new List<int>();
+
+        foreach (GameObject node in currentNodes)
+        {
+            MapNode nodeScript = node.GetComponent<MapNode>();
+            if (nodeScript != null)
+            {
+                nodeTypeList.Add((int)nodeScript.nodeType);
+            }
+            else
+            {
+                Debug.LogWarning("Node is missing MapNode component.");
+            }
+        }
+
+        return nodeTypeList;
     }
 }
