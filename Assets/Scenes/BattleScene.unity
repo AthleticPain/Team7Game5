@@ -303,6 +303,7 @@ MonoBehaviour:
   unitVisuals: {fileID: 2779832152214976087}
   maxHP: 10
   currentHP: 10
+  unitStats: {fileID: 11400000, guid: 38e8fc52e073f3b40802a1de45a3e8b5, type: 2}
   moves:
   - {fileID: 11400000, guid: fd89268469cb79543a406a5905f41edf, type: 2}
   unitState: 0
@@ -3866,6 +3867,7 @@ MonoBehaviour:
   unitVisuals: {fileID: 1398522809}
   maxHP: 10
   currentHP: 10
+  unitStats: {fileID: 11400000, guid: 8317dfb91cbca204791f5be6b79eabb7, type: 2}
   moves:
   - {fileID: 11400000, guid: fd89268469cb79543a406a5905f41edf, type: 2}
   unitState: 0
@@ -4403,6 +4405,7 @@ MonoBehaviour:
   unitVisuals: {fileID: 1243518579}
   maxHP: 10
   currentHP: 10
+  unitStats: {fileID: 11400000, guid: 38e8fc52e073f3b40802a1de45a3e8b5, type: 2}
   moves:
   - {fileID: 11400000, guid: fd89268469cb79543a406a5905f41edf, type: 2}
   unitState: 0
@@ -4932,6 +4935,7 @@ MonoBehaviour:
   unitVisuals: {fileID: 1830298975}
   maxHP: 10
   currentHP: 10
+  unitStats: {fileID: 11400000, guid: 977fb4afca40f984cb080596b672888e, type: 2}
   moves:
   - {fileID: 11400000, guid: fd89268469cb79543a406a5905f41edf, type: 2}
   unitState: 0

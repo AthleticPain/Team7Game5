@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db133a83e089dc844a899133948d9008, type: 3}
   m_Name: Axel Stats
   m_EditorClassIdentifier: 
-  hp: 10
-  strength: 5
+  hp: 100
+  strength: 7
   speed: 2
   critChance: 5
