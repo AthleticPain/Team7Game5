@@ -30,8 +30,10 @@ public class PlayerMoveExecutionState : BattleStateBase
         
         player.PlayAttack();
         yield return new WaitForSeconds(1f);
+
+        int damageValue = UnityEngine.Random.Range(move.minDamage, move.maxDamage);
         
-        targetEnemy.TakeDamage(move.power);
+        targetEnemy.TakeDamage(damageValue);
         targetEnemy.PlayHit();
         
         yield return new WaitForSeconds(1.5f);

@@ -26,7 +26,9 @@ public class EnemyTurnState : BattleStateBase
         enemy.PlayAttack();
         yield return new WaitForSeconds(1f);
 
-        playerTarget.TakeDamage(move.power);
+        int damageValue = Random.Range(move.minDamage, move.maxDamage);
+
+        playerTarget.TakeDamage(damageValue);
         playerTarget.PlayHit();
 
         yield return new WaitForSeconds(1.5f);

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   moveName: Attack
-  power: 2
+  minDamage: 1
+  maxDamage: 4

@@ -85,10 +85,10 @@ public class BattleSystem : MonoBehaviour
 
     public void EndBattle(bool win)
     {
-        // string endingStatement = win ? "You win!" : "You lose!";
-        // Debug.Log("Battle Ended. " + endingStatement);
+        string endingStatement = win ? "You win!" : "You lose!";
+        Debug.Log("Battle Ended. " + endingStatement);
         SetState(new BattleEndState(this));
-        battleUIManager.ShowGameOverPanel(win);
+        battleUIManager.ShowGameOverPanel(endingStatement);
     }
 
     //Called when player or enemy ends their turn

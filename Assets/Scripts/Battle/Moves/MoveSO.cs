@@ -8,5 +8,6 @@ using UnityEngine;
 public class MoveSO : ScriptableObject
 {
     public string moveName;
-    public int power;
+    public int minDamage;
+    public int maxDamage;
 }
