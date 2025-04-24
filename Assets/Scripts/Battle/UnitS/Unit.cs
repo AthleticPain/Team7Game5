@@ -12,6 +12,7 @@ public abstract class Unit : MonoBehaviour
     [SerializeField] protected int maxHP;
     [SerializeField] protected int currentHP;
 
+    [SerializeField] public BattleUnitStatsSO unitStats;
     [SerializeField] protected List<MoveSO> moves;
 
     public UnitStateEnum unitState;
@@ -19,6 +20,13 @@ public abstract class Unit : MonoBehaviour
     public bool IsDead
     {
         get { return unitState == UnitStateEnum.dead; }
+    }
+
+    private void Start()
+    {
+        unitState = UnitStateEnum.alive;
+        maxHP = currentHP = unitStats.hp;
+        unitVisuals.UpdateHealthBar(currentHP, maxHP);
     }
 
     public void TakeDamage(int power)
