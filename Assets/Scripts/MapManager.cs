@@ -21,7 +21,6 @@ public class MapManager : MonoBehaviour
 
     [Header("Map Settings")] public List<GameObject> currentNodes = new List<GameObject>();
     public int FightPercent = 50;
-    [SerializeField] private NodeDataScriptableObject mapNodeSO;
 
     [Header("Map Components")] public GameObject mapLayerOne;
     public GameObject mapLayerTwo;
@@ -58,17 +57,16 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-        if (PlayerStatsManager.Instance.runStarted)
+        if (PlayerStatsManager.Instance.gameState == 2)
         {
             // TODO: Load Data
             LoadMapNodesFromScriptableObject();
         }
-        else
+        else if(PlayerStatsManager.Instance.gameState == 0)
         {
             // Start Run
             Debug.Log("New Run Started");
-            PlayerStatsManager.Instance.runStarted = true;
-
+            PlayerStatsManager.Instance.gameState = 1;
             SpawnNodes(mapLayerOne, 1);
             SpawnNodes(mapLayerTwo, 2);
             SpawnNodes(mapLayerThree, 3);
@@ -232,6 +230,7 @@ public class MapManager : MonoBehaviour
     public void EnterFight()
     {
         // TODO
+        PlayerStatsManager.Instance.gameState = 2;
         SaveMapNodesToScriptableObject();
         SceneManager.LoadScene("BattleScene");
     }
@@ -248,7 +247,6 @@ public class MapManager : MonoBehaviour
         UpdateResourceUI();
     }
 
-
     public void UpdateResourceUI()
     {
         gasSlider.maxValue = maxGas;
@@ -261,14 +259,14 @@ public class MapManager : MonoBehaviour
     //Writes nodes to scriptable object as a list of ints
     void SaveMapNodesToScriptableObject()
     {
-        mapNodeSO.savedNodes = ConvertNodesToIntList();
+        PlayerStatsManager.Instance.mapNodeSO.savedNodes = ConvertNodesToIntList();
     }
 
     //Loads nodes from scriptable object and instantiates them
     //Make sure that the indices in the enum are the same as the prefabs!!
     void LoadMapNodesFromScriptableObject()
     {
-        foreach (MapNodeType type in mapNodeSO.savedNodes)
+        foreach (MapNodeType type in PlayerStatsManager.Instance.mapNodeSO.savedNodes)
         {
             GameObject prefab = mapNodePrefabs[(int)type]; // mapNodePrefabs must match enum order
             

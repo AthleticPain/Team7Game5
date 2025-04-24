@@ -7,15 +7,19 @@ public class PlayerStatsManager : MonoBehaviour
     public static PlayerStatsManager Instance { get; private set; }
 
     [Header("Map Data")]
-    [SerializeField] public MapNode[] currentMapNodes;
+    [SerializeField] public NodeDataScriptableObject mapNodeSO;
     [SerializeField] public int nodesTraveled;
-    [SerializeField] public int currentGas;
-    [SerializeField] public int currentFood;
-    [SerializeField] public bool runStarted;
 
     [Header("Character Stats")]
     [SerializeField] public int junoCurrentHP;
     [SerializeField] public int axelCurrentHP;
+    [Header("Game Stats")]
+    // 0 - Not Started
+    // 1 - Travel
+    // 2 - Fight
+    [SerializeField] public int gameState = 0; 
+    [SerializeField] public int currentGas;
+    [SerializeField] public int currentFood;
 
     private void Awake()
     {

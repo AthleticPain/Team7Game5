@@ -7,10 +7,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] bool waitToLerp = true;
     [SerializeField] float menuAlphaThreshold = 0.2f;
     [SerializeField] float fadeSpeed = 1.0f;
-
-    
     [SerializeField] private bool canLerp = false;
-    
     
     [SerializeField] private CanvasGroup from, to;
 
