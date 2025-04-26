@@ -36,13 +36,13 @@ public class PlayerMoveExecutionState : BattleStateBase
         targetEnemy.TakeDamage(damageValue);
         targetEnemy.PlayHit();
         
-        yield return new WaitForSeconds(1.5f);
-        
         if (targetEnemy.IsDead)
         {
             targetEnemy.PlayDeath();
-            yield return new WaitForSeconds(0.5f);
+            //yield return new WaitForSeconds(0.5f);
         }
+        
+        yield return new WaitForSeconds(1.5f);
         
         battle.OnTurnEnded();
     }

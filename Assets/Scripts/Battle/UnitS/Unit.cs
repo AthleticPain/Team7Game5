@@ -45,7 +45,8 @@ public abstract class Unit : MonoBehaviour
     public virtual void PlayHit()
     {
         Debug.Log($"Playing hit animation for {name}");
-        unitVisuals?.PlayHit();
+        if(!IsDead)
+            unitVisuals?.PlayHit();
     }
 
     public virtual void PlayDeath()
