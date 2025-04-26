@@ -8,7 +8,6 @@ public class BattleUIManager : MonoBehaviour
 {
     [SerializeField] private RectTransform playerActionsPanel;
     [SerializeField] private RectTransform gameOverPanel;
-    [SerializeField] private TMP_Text gameOverText;
     [SerializeField] private GameObject dimOverlayBG;
 
     public void SetDimBackground(bool dimBackgroundActive) => dimOverlayBG.SetActive(dimBackgroundActive);
@@ -32,9 +31,12 @@ public class BattleUIManager : MonoBehaviour
             .SetEase(Ease.InBack);
     }
 
-    public void ShowGameOverPanel(string gameOverTextMessage)
+    public void ShowGameOverPanel(bool win)
     {
-        gameOverText.text = gameOverTextMessage;
         gameOverPanel.gameObject.SetActive(true);
+        
+        //Child 0 is win panel, child 1 is lose panel
+        gameOverPanel.transform.GetChild(0).gameObject.SetActive(win);
+        gameOverPanel.transform.GetChild(1).gameObject.SetActive(!win);
     }
 }

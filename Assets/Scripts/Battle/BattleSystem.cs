@@ -88,7 +88,7 @@ public class BattleSystem : MonoBehaviour
         string endingStatement = win ? "You win!" : "You lose!";
         Debug.Log("Battle Ended. " + endingStatement);
         SetState(new BattleEndState(this));
-        battleUIManager.ShowGameOverPanel(endingStatement);
+        battleUIManager.ShowGameOverPanel(win);
     }
 
     //Called when player or enemy ends their turn
