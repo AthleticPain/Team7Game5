@@ -32,7 +32,7 @@ public class UnitVisuals : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     }
 
     public void PlayHit() => animator?.SetTrigger("Hit");
-    public void PlayDeath() => animator?.SetTrigger("Die");
+    public void PlayDeath() => animator?.SetTrigger("Death");
     public void PlayAttack() => animator?.SetTrigger("Attack");
     public void PlayHighlightTurn() => animator?.SetTrigger("HighlightTurn");
 
