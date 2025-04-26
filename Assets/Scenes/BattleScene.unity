@@ -5013,7 +5013,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerActionsPanel: {fileID: 953271776}
   gameOverPanel: {fileID: 279353545}
-  gameOverText: {fileID: 1369065139}
   dimOverlayBG: {fileID: 1528766277}
 --- !u!1 &2079067448
 GameObject:
