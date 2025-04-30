@@ -61,8 +61,9 @@ public class MapManager : MonoBehaviour
         {
             // TODO: Load Data
             LoadMapNodesFromScriptableObject();
+            SetNodeActivation();
         }
-        else if(PlayerStatsManager.Instance.gameState == 0)
+        else if (PlayerStatsManager.Instance.gameState == 0)
         {
             // Start Run
             Debug.Log("New Run Started");
@@ -111,18 +112,23 @@ public class MapManager : MonoBehaviour
             int prefabIndex = Random.Range(0, mapNodePrefabs.Length);
             GameObject selectedNode = mapNodePrefabs[prefabIndex];
 
-            GameObject instance = Instantiate(selectedNode, Vector3.zero, Quaternion.identity);
-            instance.transform.SetParent(parentLayer.transform, worldPositionStays: false);
+            SpawnSelectedNode(parentLayer, selectedNode);
+        }
+    }
 
-            // Add to current nodes
-            currentNodes.Add(instance);
+    private void SpawnSelectedNode(GameObject parentLayer, GameObject selectedNode)
+    {
+        GameObject instance = Instantiate(selectedNode, Vector3.zero, Quaternion.identity);
+        instance.transform.SetParent(parentLayer.transform, worldPositionStays: false);
 
-            // Assign node index to the MapNode
-            MapNode nodeScript = instance.GetComponent<MapNode>();
-            if (nodeScript != null)
-            {
-                nodeScript.nodeIndex = currentNodes.Count - 1; // Use index in the updated list
-            }
+        // Add to current nodes
+        currentNodes.Add(instance);
+
+        // Assign node index to the MapNode
+        MapNode nodeScript = instance.GetComponent<MapNode>();
+        if (nodeScript != null)
+        {
+            nodeScript.nodeIndex = currentNodes.Count - 1; // Use index in the updated list
         }
     }
 
@@ -266,13 +272,15 @@ public class MapManager : MonoBehaviour
     //Make sure that the indices in the enum are the same as the prefabs!!
     void LoadMapNodesFromScriptableObject()
     {
-        foreach (MapNodeType type in PlayerStatsManager.Instance.mapNodeSO.savedNodes)
+        var savedNodes = PlayerStatsManager.Instance.mapNodeSO.savedNodes;
+
+        for (int i = 0; i < savedNodes.Count; i++)
         {
-            GameObject prefab = mapNodePrefabs[(int)type]; // mapNodePrefabs must match enum order
-            
-            //TODO: Replace this block with the spawning logic you want to implement
-            GameObject instance = Instantiate(prefab);
-            currentNodes.Add(instance);
+            int type = savedNodes[i];
+            GameObject prefab = mapNodePrefabs[type];
+
+            GameObject parentLayer = i == 0 ? mapLayerOne : i < 3 ? mapLayerTwo : mapLayerThree;
+            SpawnSelectedNode(parentLayer, prefab);
         }
     }
 
