@@ -57,11 +57,13 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Current Game State: " + PlayerStatsManager.Instance.GameState);
         if (PlayerStatsManager.Instance.GameState == 2)
         {
             // TODO: Load Data
             LoadMapNodesFromScriptableObject();
             SetNodeActivation();
+            PlayerStatsManager.Instance.GameState = 1;
         }
         else if (PlayerStatsManager.Instance.GameState == 0)
         {

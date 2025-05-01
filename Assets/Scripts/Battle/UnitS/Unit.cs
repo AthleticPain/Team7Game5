@@ -22,10 +22,16 @@ public abstract class Unit : MonoBehaviour
         get { return unitState == UnitStateEnum.dead; }
     }
 
-    private void Start()
+    // private void Start()
+    // {
+    //     InitializeUnit();
+    // }
+
+    public void InitializeUnit()
     {
         unitState = UnitStateEnum.alive;
-        maxHP = currentHP = unitStats.currentHp;
+        maxHP = unitStats.currentMaxHp;
+        currentHP = unitStats.currentHp;
         unitVisuals.UpdateHealthBar(currentHP, maxHP);
     }
 
@@ -45,7 +51,7 @@ public abstract class Unit : MonoBehaviour
     public virtual void PlayHit()
     {
         Debug.Log($"Playing hit animation for {name}");
-        if(!IsDead)
+        if (!IsDead)
             unitVisuals?.PlayHit();
     }
 

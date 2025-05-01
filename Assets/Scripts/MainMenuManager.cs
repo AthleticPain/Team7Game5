@@ -12,11 +12,6 @@ public class MainMenuManager : MonoBehaviour
     
     [SerializeField] private CanvasGroup from, to;
 
-    private void Start()
-    {
-        PlayerStatsManager.Instance.GameState = 0;
-    }
-
     private void Update()
     {
         // Fading Menus
@@ -58,6 +53,12 @@ public class MainMenuManager : MonoBehaviour
         #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
         #endif
+    }
+
+    public void StartNewGame()
+    {
+        PlayerStatsManager.Instance.GameState = 0;
+        ChangeSceneFromName("MapTest");
     }
 
     public void ChangeSceneFromIndex(int sceneIndex) => SceneManager.LoadScene(sceneIndex); 

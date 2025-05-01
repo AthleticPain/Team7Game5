@@ -40,12 +40,14 @@ public class BattleSystem : MonoBehaviour
     private void Start()
     {
         //Set Enemy Stats
-        foreach (EnemyUnit enemy in enemyUnits)
+        foreach (Unit unit in unitsInTurnOrder)
         {
-            enemy.unitStats.ResetStats();
-            enemy.unitVisuals.UpdateHealthBar(enemy.unitStats.currentMaxHp, enemy.unitStats.currentMaxHp);
+            if (unit is EnemyUnit)
+                unit.unitStats.ResetStats();
+
+            unit.InitializeUnit();
         }
-        
+
         currentTurnIndex = -1;
         Invoke(nameof(OnTurnEnded), 1); //Increments turn index and sets state according to player or enemy turn
         //OnTurnEnded(); 

@@ -6,30 +6,34 @@ public class PlayerStatsManager : MonoBehaviour
 {
     public static PlayerStatsManager Instance { get; private set; }
 
-    [Header("Map Data")]
-    [SerializeField] public NodeDataScriptableObject mapNodeSO;
+    [Header("Map Data")] [SerializeField] public NodeDataScriptableObject mapNodeSO;
     [SerializeField] public int nodesTraveled;
 
-    [Header("Character Stats")]
-    [SerializeField] private BattleUnitStatsSO axelStats;
+    [Header("Character Stats")] [SerializeField]
+    private BattleUnitStatsSO axelStats;
+
     [SerializeField] private BattleUnitStatsSO junoStats;
 
     [Header("Game Stats")]
     // 0 - Not Started
     // 1 - Travel
     // 2 - Fight
+    [SerializeField]
+    private int gameState = 0;
 
-    [SerializeField] private int gameState = 0; 
     [SerializeField] public int currentGas;
     [SerializeField] public int currentFood;
-    
+
     public int GameState
     {
-        get{ return gameState; }
+        get { return gameState; }
         set
         {
-            gameState = value;
+            Debug.Log("Changing game state to " + value);
+            Debug.Break();
             
+            gameState = value;
+
             switch (gameState)
             {
                 case 0:
