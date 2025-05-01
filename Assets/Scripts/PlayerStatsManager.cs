@@ -29,9 +29,6 @@ public class PlayerStatsManager : MonoBehaviour
         get { return gameState; }
         set
         {
-            Debug.Log("Changing game state to " + value);
-            Debug.Break();
-            
             gameState = value;
 
             switch (gameState)
