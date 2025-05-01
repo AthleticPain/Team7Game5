@@ -70,6 +70,10 @@ public class BattleSystem : MonoBehaviour
         if (currentState is PlayerActionSelectionState)
         {
             PlayerUnit currentPlayerUnit = unitsInTurnOrder[currentTurnIndex] as PlayerUnit;
+            currentPlayerUnit.selectedMoveIndex = moveIndex;
+            
+            Debug.Log("Selected move: " + currentPlayerUnit.Moves[currentPlayerUnit.selectedMoveIndex].name);
+            
             MoveSO selectedMove = currentPlayerUnit.Moves[currentPlayerUnit.selectedMoveIndex];
             SetState(new PlayerTargetSelectionState(this, battleUIManager, enemyUnits, playerUnits, selectedMove));
         }
@@ -106,7 +110,7 @@ public class BattleSystem : MonoBehaviour
                 playerUnit.unitStats.currentLevel++;
             }
         }
-        
+
         battleUIManager.ShowGameOverPanel(win);
     }
 
