@@ -25,6 +25,8 @@ public class BattleSystem : MonoBehaviour
     //Set a new state
     public void SetState(BattleStateBase newState)
     {
+        Debug.Log($"*** Exiting {currentState?.GetType().Name} and entering {newState.GetType().Name} ***");
+        
         currentState?.Exit();
         currentState = newState;
         currentState.Enter();
@@ -78,13 +80,29 @@ public class BattleSystem : MonoBehaviour
             SetState(new PlayerTargetSelectionState(this, battleUIManager, enemyUnits, playerUnits, selectedMove));
         }
     }
+    
+    public void OnPlayerMoveSelected(MoveSO selectedMove)
+    {
+        if (currentState is PlayerActionSelectionState)
+        {
+            Debug.Log("Selected move: " +selectedMove.name);
+
+            SetState(new PlayerTargetSelectionState(this, battleUIManager, enemyUnits, playerUnits, selectedMove));
+        }
+    }
 
     public void OnPlayerTargetConfirmed(Unit[] targetUnits, MoveSO selectedMove)
     {
+        Debug.Log("Player target Confirmed. Current State: "+currentState.GetType().Name);
         //Only allow this to happen when it is player's turn
-        if (currentState is PlayerTargetSelectionState or PlayerActionSelectionState)
+        if (currentState is PlayerTargetSelectionState || currentState is PlayerActionSelectionState)
         {
+            Debug.Log("Changing State to PlayerMoveExecutionState. Selected move: " + selectedMove.name);
             SetState(new PlayerMoveExecutionState(this, selectedMove, targetUnits));
+        }
+        else
+        {
+            Debug.LogError("Oops. This should never happen.");
         }
     }
 

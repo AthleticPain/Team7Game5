@@ -84,6 +84,7 @@ public class PlayerTargetSelectionState : BattleStateBase
         {
             enemy.unitVisuals.SetVisualState(UnitVisuals.VisualState.normal);
             enemy.unitVisuals.OnPointerEntered.RemoveAllListeners();
+            enemy.unitVisuals.OnPointerClicked.RemoveAllListeners();
         }
 
         foreach (var player in players)
@@ -107,6 +108,8 @@ public class PlayerTargetSelectionState : BattleStateBase
         if (!targetEnemy.IsDead)
         {
             Unit[] targetEnemies = { targetEnemy };
+            
+            Debug.Log($"Target confirmed. Using Move: {currentlySelectedMove.name}.");
             battle.OnPlayerTargetConfirmed(targetEnemies, currentlySelectedMove);
         }
     }

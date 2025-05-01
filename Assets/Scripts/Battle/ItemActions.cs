@@ -33,6 +33,6 @@ public class ItemActions : MonoBehaviour
 
     public void WaterBottle()
     {
-        battle.OnPlayerMoveSelected(2);
+        battle.OnPlayerMoveSelected(itemMoves[2]);
     }
 }

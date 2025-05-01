@@ -11,6 +11,7 @@ public class PlayerMoveExecutionState : BattleStateBase
     public PlayerMoveExecutionState(BattleSystem battle, MoveSO move, Unit[] targetUnits) : base(battle)
     {
         this.move = move;
+        Debug.Log($"Setting this move to {move.name}");
         this.targetUnits = targetUnits;
     }
 
@@ -37,7 +38,7 @@ public class PlayerMoveExecutionState : BattleStateBase
 
         foreach (Unit targetUnit in targetUnits)
         {
-            Debug.Log($"Attacking {targetUnit.name} with {move.name}.");
+            Debug.Log($"{player.name} is attacking {targetUnit.name} with {move.name}.");
 
 
             targetUnit.TakeDamage(damageValue);
