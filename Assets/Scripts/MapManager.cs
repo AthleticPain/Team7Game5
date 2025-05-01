@@ -33,12 +33,13 @@ public class MapManager : MonoBehaviour
     public TextMeshProUGUI eventText;
     public Button[] eventButtons;
 
-    [Header("Resources")] [SerializeField] private int startGas = 10;
-    [SerializeField] private int maxGas = 20;
+    [Header("Resources")]
+    [SerializeField] private int startGas = 25;
+    [SerializeField] private int maxGas = 50;
     [SerializeField] private int currentGas;
 
-    [SerializeField] private int startFood = 10;
-    [SerializeField] private int maxFood = 20;
+    [SerializeField] private int startFood = 25;
+    [SerializeField] private int maxFood = 50;
     [SerializeField] private int currentFood;
     [SerializeField] private Slider gasSlider;
     [SerializeField] private Slider foodSlider;
