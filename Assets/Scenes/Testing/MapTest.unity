@@ -882,9 +882,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1850758029}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 290.5695, y: -424.14636}
   m_SizeDelta: {x: 536.5775, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &241832125
@@ -1642,7 +1642,7 @@ GameObject:
   - component: {fileID: 575754967}
   - component: {fileID: 575754966}
   m_Layer: 5
-  m_Name: MapBGBorder
+  m_Name: MapImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1681,15 +1681,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: aa47a540ed2a62b45ac3b6cf4c37f6dd, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4209,9 +4209,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1850758029}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 290.5695, y: -254.48781}
   m_SizeDelta: {x: 536.5775, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1376585888
@@ -4634,9 +4634,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1850758029}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 290.5695, y: -84.82927}
   m_SizeDelta: {x: 536.5775, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1543587449
@@ -5421,10 +5421,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1850758029}
   - component: {fileID: 1850758031}
-  - component: {fileID: 1850758030}
   - component: {fileID: 1850758032}
   m_Layer: 5
-  m_Name: MapBG
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5453,36 +5452,6 @@ RectTransform:
   m_AnchoredPosition: {x: 299.72, y: -262.5}
   m_SizeDelta: {x: 581.139, y: 508.9756}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1850758030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850758028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.8301887, g: 0.68725526, b: 0.54432184, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1850758031
 CanvasRenderer:
   m_ObjectHideFlags: 0

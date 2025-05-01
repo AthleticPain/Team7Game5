@@ -135,9 +135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 0
-  nodeType: Fight
-  eventImage: {fileID: 21300000, guid: 44a054df1702e39458b7072b08d0f212, type: 3}
-  eventDescription: You be fighting
+  nodeType: 0
+  eventImage: {fileID: 21300000, guid: a4ab231ed0eb6f44c85c72c75ec73bac, type: 3}
+  eventDescription: An unfeeling presence blocks your path...
   eventDescriptionAlt: 
 --- !u!1 &6084903077838118433
 GameObject:

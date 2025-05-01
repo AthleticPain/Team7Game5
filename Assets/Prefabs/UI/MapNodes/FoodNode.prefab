@@ -136,8 +136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeIndex: 0
   nodeType: 1
-  eventImage: {fileID: 3351748369286481944, guid: 4dffe6eab57ca4e4ba2f967307bd1c29, type: 3}
-  eventDescription: mmmmm food
+  eventImage: {fileID: 21300000, guid: 626b24e0f91a2704e832a5e0f0586746, type: 3}
+  eventDescription: The team eats at an abandoned diner.
   eventDescriptionAlt: 
 --- !u!1 &5967580194825669827
 GameObject:
