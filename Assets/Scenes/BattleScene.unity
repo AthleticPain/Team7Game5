@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 129645959}
   - component: {fileID: 129645958}
   m_Layer: 5
-  m_Name: Item 1 (2)
+  m_Name: Item 2 - Molotov
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,7 +388,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 129645959}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2019742310}
+        m_TargetAssemblyTypeName: ItemActions, Assembly-CSharp
+        m_MethodName: Molotov
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &129645959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2858,13 +2870,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1388292735}
-  - {fileID: 1332368986}
   - {fileID: 129645957}
+  - {fileID: 1332368986}
   m_Father: {fileID: 1639000096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -488.79004}
   m_SizeDelta: {x: 1384.568, y: 488.79}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &961682237
@@ -4340,7 +4352,7 @@ GameObject:
   - component: {fileID: 1332368988}
   - component: {fileID: 1332368987}
   m_Layer: 5
-  m_Name: Item 1 (1)
+  m_Name: Item 3 - Water Bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4408,7 +4420,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1332368988}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2019742307}
+        m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
+        m_MethodName: OnPlayerMoveSelected
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1332368988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4783,7 +4807,7 @@ GameObject:
   - component: {fileID: 1388292736}
   - component: {fileID: 1388292738}
   m_Layer: 5
-  m_Name: Item 1
+  m_Name: Item 1 - MedPack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4889,19 +4913,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1388292736}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2019742307}
-        m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
-        m_MethodName: OnPlayerMoveSelected
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1398522807
 GameObject:
   m_ObjectHideFlags: 0
@@ -6249,6 +6261,7 @@ GameObject:
   - component: {fileID: 2019742308}
   - component: {fileID: 2019742307}
   - component: {fileID: 2019742309}
+  - component: {fileID: 2019742310}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -6314,6 +6327,23 @@ MonoBehaviour:
   - {fileID: 961682236}
   gameOverPanel: {fileID: 279353545}
   dimOverlayBG: {fileID: 1528766277}
+--- !u!114 &2019742310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019742306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac8ead4255b216441904e5aeb329d974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battle: {fileID: 2019742307}
+  itemMoves:
+  - {fileID: 11400000, guid: 08957ec9812372444b0378a0369b44b9, type: 2}
+  - {fileID: 11400000, guid: 08957ec9812372444b0378a0369b44b9, type: 2}
+  - {fileID: 11400000, guid: a15fcc01f48371c4190d404c73c1e9c7, type: 2}
 --- !u!1 &2061999132
 GameObject:
   m_ObjectHideFlags: 0

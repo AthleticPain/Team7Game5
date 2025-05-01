@@ -71,9 +71,9 @@ public class BattleSystem : MonoBehaviour
         {
             PlayerUnit currentPlayerUnit = unitsInTurnOrder[currentTurnIndex] as PlayerUnit;
             currentPlayerUnit.selectedMoveIndex = moveIndex;
-            
+
             Debug.Log("Selected move: " + currentPlayerUnit.Moves[currentPlayerUnit.selectedMoveIndex].name);
-            
+
             MoveSO selectedMove = currentPlayerUnit.Moves[currentPlayerUnit.selectedMoveIndex];
             SetState(new PlayerTargetSelectionState(this, battleUIManager, enemyUnits, playerUnits, selectedMove));
         }
@@ -81,13 +81,23 @@ public class BattleSystem : MonoBehaviour
 
     public void OnPlayerTargetConfirmed(Unit[] targetUnits, MoveSO selectedMove)
     {
-        //TODO: Remove temporary hardcoded enemy and make it dynamic
-        //EnemyUnit targetEnemy = enemyUnits[0];
-
         //Only allow this to happen when it is player's turn
-        if (currentState is PlayerTargetSelectionState)
+        if (currentState is PlayerTargetSelectionState or PlayerActionSelectionState)
         {
-            SetState(new PlayerMoveExecutionState(this, selectedMove, targetUnits));
+            float scalingFactor = 1;
+            switch (selectedMove.scalingStat)
+            {
+                case StatToScaleWith.Strength:
+                    scalingFactor = CurrentUnit.unitStats.strength;
+                    break;
+                case StatToScaleWith.Speed:
+                    scalingFactor = CurrentUnit.unitStats.speed;
+                    break;
+                default:
+                    break;
+            }
+            
+            SetState(new PlayerMoveExecutionState(this, selectedMove, targetUnits, scalingFactor));
         }
     }
 
@@ -183,6 +193,12 @@ public class BattleSystem : MonoBehaviour
     public T GetCurrentUnitAs<T>() where T : Unit
     {
         return unitsInTurnOrder[currentTurnIndex] as T;
+    }
+
+    public T[] GetListOFUnits<T>() where T : Unit
+    {
+        T[] units = unitsInTurnOrder.FindAll(x => x is T).Cast<T>().ToArray();
+        return units;
     }
 
     public PlayerUnit GetRandomLivingPlayer()

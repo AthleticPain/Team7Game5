@@ -7,11 +7,13 @@ public class PlayerMoveExecutionState : BattleStateBase
 {
     private MoveSO move;
     private Unit[] targetUnits;
+    private float scalingFactor;
 
-    public PlayerMoveExecutionState(BattleSystem battle, MoveSO move, Unit[] targetUnits) : base(battle)
+    public PlayerMoveExecutionState(BattleSystem battle, MoveSO move, Unit[] targetUnits, float scalingFactor = 1) : base(battle)
     {
         this.move = move;
         this.targetUnits = targetUnits;
+        this.scalingFactor = scalingFactor;
     }
 
     public override void Enter()
@@ -33,7 +35,9 @@ public class PlayerMoveExecutionState : BattleStateBase
 
         foreach (Unit targetUnit in targetUnits)
         {
-            int damageValue = UnityEngine.Random.Range(move.minDamage, move.maxDamage) * player.unitStats.strength;
+            Debug.Log($"Attacking {targetUnit.name} with {move.name}.");
+
+            int damageValue = move.GetDamageValue(scalingFactor);
 
             targetUnit.TakeDamage(damageValue);
             targetUnit.PlayHit();
@@ -43,11 +47,11 @@ public class PlayerMoveExecutionState : BattleStateBase
                 targetUnit.PlayDeath();
                 //yield return new WaitForSeconds(0.5f);
             }
-
-            yield return new WaitForSeconds(1.5f);
-
-            battle.OnTurnEnded();
         }
+        
+        yield return new WaitForSeconds(1.5f);
+
+        battle.OnTurnEnded();
     }
 }
 
