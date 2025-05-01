@@ -97,6 +97,16 @@ public class BattleSystem : MonoBehaviour
         string endingStatement = win ? "You win!" : "You lose!";
         Debug.Log("Battle Ended. " + endingStatement);
         SetState(new BattleEndState(this));
+
+        if (win)
+        {
+            foreach (PlayerUnit playerUnit in playerUnits)
+            {
+                playerUnit.unitStats.IncreaseStats(1);
+                playerUnit.unitStats.currentLevel++;
+            }
+        }
+        
         battleUIManager.ShowGameOverPanel(win);
     }
 

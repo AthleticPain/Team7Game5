@@ -19,6 +19,7 @@ public class BattleUnitStatsSO : ScriptableObject
     public int strength;
     public int speed;
     public int critChance;
+    public int currentLevel;
 
     public void ResetStats()
     {
@@ -27,6 +28,7 @@ public class BattleUnitStatsSO : ScriptableObject
         strength = baseStrength;
         speed = baseSpeed;
         critChance = baseCritChance;
+        currentLevel = 1;
     }
 
     public void IncreaseStats(int additiveIncrement)
