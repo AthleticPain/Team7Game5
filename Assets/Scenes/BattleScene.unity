@@ -4421,10 +4421,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2019742307}
-        m_TargetAssemblyTypeName: BattleSystem, Assembly-CSharp
-        m_MethodName: OnPlayerMoveSelected
-        m_Mode: 3
+      - m_Target: {fileID: 2019742310}
+        m_TargetAssemblyTypeName: ItemActions, Assembly-CSharp
+        m_MethodName: WaterBottle
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4913,7 +4913,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1388292736}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2019742310}
+        m_TargetAssemblyTypeName: ItemActions, Assembly-CSharp
+        m_MethodName: MedKit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1398522807
 GameObject:
   m_ObjectHideFlags: 0
@@ -6289,10 +6301,10 @@ MonoBehaviour:
   - {fileID: 1337553997}
   - {fileID: 1919096486}
   unitsInTurnOrder:
-  - {fileID: 88969315}
-  - {fileID: 1919096486}
-  - {fileID: 1621278058}
   - {fileID: 1337553997}
+  - {fileID: 1919096486}
+  - {fileID: 88969315}
+  - {fileID: 1621278058}
   currentStateName: 
   currentTurnIndex: 0
 --- !u!4 &2019742308
@@ -6341,7 +6353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battle: {fileID: 2019742307}
   itemMoves:
-  - {fileID: 11400000, guid: 08957ec9812372444b0378a0369b44b9, type: 2}
+  - {fileID: 11400000, guid: 5c0d3e5e3b1a96e49b126cc3a42998a1, type: 2}
   - {fileID: 11400000, guid: 08957ec9812372444b0378a0369b44b9, type: 2}
   - {fileID: 11400000, guid: a15fcc01f48371c4190d404c73c1e9c7, type: 2}
 --- !u!1 &2061999132

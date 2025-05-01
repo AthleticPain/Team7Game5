@@ -37,7 +37,7 @@ public abstract class Unit : MonoBehaviour
 
     public void TakeDamage(int power)
     {
-        currentHP = Mathf.Max(0, currentHP - power);
+        currentHP = Mathf.Min(Mathf.Max(0, currentHP - power), maxHP);
         unitVisuals?.UpdateHealthBar(currentHP, maxHP);
         Debug.Log(name + " takes " + power + " damage!\nRemaining HP: " + currentHP + "/" + maxHP);
 
@@ -65,5 +65,10 @@ public abstract class Unit : MonoBehaviour
     {
         Debug.Log($"Playing attack animation for {name}");
         unitVisuals?.PlayAttack();
+    }
+
+    public virtual void PlayHeal()
+    {
+        Debug.Log($"Playing heal animation for {name}");
     }
 }

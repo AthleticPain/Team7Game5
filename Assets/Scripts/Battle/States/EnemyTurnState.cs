@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemyTurnState : BattleStateBase
 {
-    public EnemyTurnState(BattleSystem battle) : base(battle) { }
+    public EnemyTurnState(BattleSystem battle) : base(battle)
+    {
+    }
 
     public override void Enter()
     {
@@ -14,35 +16,25 @@ public class EnemyTurnState : BattleStateBase
     private IEnumerator EnemyTurn()
     {
         var enemy = battle.GetCurrentUnitAs<EnemyUnit>();
+        var move = enemy.GetRandomMove();
+        int damageValue = move.GetDamageValue(enemy.unitStats);
 
         if (enemy == null)
         {
             Debug.LogError("Something went wrong");
         }
-        
+
         var playerTarget = battle.GetRandomLivingPlayer();
-        var move = enemy.GetRandomMove();
 
-        enemy.PlayAttack();
-        yield return new WaitForSeconds(1f);
-
-        float scalingFactor = 1;
-        switch (move.scalingStat)
+        if (damageValue >= 0)
         {
-            case StatToScaleWith.Strength:
-                scalingFactor = enemy.unitStats.strength;
-                break;
-            case StatToScaleWith.Speed:
-                scalingFactor = enemy.unitStats.speed;
-                break;
-            default:
-                break;
+            enemy.PlayAttack();
+            yield return new WaitForSeconds(1f);
         }
-        
-        int damageValue = move.GetDamageValue(scalingFactor);
 
         playerTarget.TakeDamage(damageValue);
-        playerTarget.PlayHit();
+        if (damageValue > 0)
+            playerTarget.PlayHit();
 
         yield return new WaitForSeconds(1.5f);
 
@@ -56,4 +48,3 @@ public class EnemyTurnState : BattleStateBase
         battle.OnTurnEnded();
     }
 }
-

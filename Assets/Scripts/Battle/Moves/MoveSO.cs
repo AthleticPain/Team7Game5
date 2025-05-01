@@ -7,7 +7,8 @@ public enum StatToScaleWith
 {
     None,
     Strength,
-    Speed
+    Speed,
+    Health
 }
 
 [CreateAssetMenu(fileName = "NewMove", menuName = "Battle/Move")]
@@ -15,13 +16,28 @@ public enum StatToScaleWith
 public class MoveSO : ScriptableObject
 {
     public string moveName;
-    [SerializeField] private int minDamage;
-    [SerializeField] private int maxDamage;
+    [SerializeField] private float minDamage;
+    [SerializeField] private float maxDamage;
     public StatToScaleWith scalingStat;
 
-    public int GetDamageValue(float scalingFactor)
+    public int GetDamageValue(BattleUnitStatsSO unitStats)
     {
-        int damageValue = Mathf.RoundToInt(UnityEngine.Random.Range(minDamage, maxDamage) * scalingFactor);
+        float scalingFactor = 1;
+        switch (scalingStat)
+        {
+            case StatToScaleWith.Strength:
+                scalingFactor = unitStats.strength;
+                break;
+            case StatToScaleWith.Speed:
+                scalingFactor = unitStats.speed;
+                break;
+            case StatToScaleWith.Health:
+                scalingFactor = unitStats.currentMaxHp * 0.01f;
+                break;
+            default:
+                break;
+        }
+        int damageValue = Mathf.FloorToInt(UnityEngine.Random.Range(minDamage, maxDamage) * scalingFactor);
         return damageValue;
     }
 }

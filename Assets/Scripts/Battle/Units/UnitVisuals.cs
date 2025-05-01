@@ -35,6 +35,7 @@ public class UnitVisuals : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     public void PlayDeath() => animator?.SetTrigger("Death");
     public void PlayAttack() => animator?.SetTrigger("Attack");
     public void PlayHighlightTurn() => animator?.SetTrigger("HighlightTurn");
+    public void PlayHeal() => animator?.SetTrigger("Heal");
 
     public virtual void SetVisualState(VisualState state)
     {

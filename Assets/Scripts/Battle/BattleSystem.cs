@@ -84,20 +84,7 @@ public class BattleSystem : MonoBehaviour
         //Only allow this to happen when it is player's turn
         if (currentState is PlayerTargetSelectionState or PlayerActionSelectionState)
         {
-            float scalingFactor = 1;
-            switch (selectedMove.scalingStat)
-            {
-                case StatToScaleWith.Strength:
-                    scalingFactor = CurrentUnit.unitStats.strength;
-                    break;
-                case StatToScaleWith.Speed:
-                    scalingFactor = CurrentUnit.unitStats.speed;
-                    break;
-                default:
-                    break;
-            }
-            
-            SetState(new PlayerMoveExecutionState(this, selectedMove, targetUnits, scalingFactor));
+            SetState(new PlayerMoveExecutionState(this, selectedMove, targetUnits));
         }
     }
 
@@ -195,7 +182,7 @@ public class BattleSystem : MonoBehaviour
         return unitsInTurnOrder[currentTurnIndex] as T;
     }
 
-    public T[] GetListOFUnits<T>() where T : Unit
+    public T[] GetListOfUnits<T>() where T : Unit
     {
         T[] units = unitsInTurnOrder.FindAll(x => x is T).Cast<T>().ToArray();
         return units;

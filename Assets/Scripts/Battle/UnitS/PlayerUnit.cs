@@ -13,6 +13,12 @@ public class PlayerUnit : Unit
         unitVisuals?.PlayHighlightTurn();
     }
 
+    public override void PlayHeal()
+    {
+        base.PlayHeal();
+        unitVisuals?.PlayHeal();
+    }
+
     // public override void PlayHit()
     // {
     //     //Play hit animation here
