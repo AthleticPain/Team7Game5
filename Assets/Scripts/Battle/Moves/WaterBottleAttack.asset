@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17f4285c10cbb9d4abb85a6466c8b3d7, type: 3}
-  m_Name: Attack
+  m_Name: WaterBottleAttack
   m_EditorClassIdentifier: 
-  moveName: Attack
-  scalingStat: 1
+  moveName: WaterBottleAttack
+  minDamage: 999
+  maxDamage: 999

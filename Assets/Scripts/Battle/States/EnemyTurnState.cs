@@ -26,7 +26,20 @@ public class EnemyTurnState : BattleStateBase
         enemy.PlayAttack();
         yield return new WaitForSeconds(1f);
 
-        int damageValue = Random.Range(move.minDamage, move.maxDamage) * enemy.unitStats.strength;
+        float scalingFactor = 1;
+        switch (move.scalingStat)
+        {
+            case StatToScaleWith.Strength:
+                scalingFactor = enemy.unitStats.strength;
+                break;
+            case StatToScaleWith.Speed:
+                scalingFactor = enemy.unitStats.speed;
+                break;
+            default:
+                break;
+        }
+        
+        int damageValue = move.GetDamageValue(scalingFactor);
 
         playerTarget.TakeDamage(damageValue);
         playerTarget.PlayHit();
