@@ -14,7 +14,7 @@ public class SceneLoader : MonoBehaviour
     public void ExitToMainMenu()
     {
         Time.timeScale = 1;
-        PlayerStatsManager.Instance.gameState = 0;
+        PlayerStatsManager.Instance.GameState = 0;
         SceneManager.LoadScene("MainMenu");
     }
 }

@@ -25,7 +25,7 @@ public abstract class Unit : MonoBehaviour
     private void Start()
     {
         unitState = UnitStateEnum.alive;
-        maxHP = currentHP = unitStats.hp;
+        maxHP = currentHP = unitStats.currentHp;
         unitVisuals.UpdateHealthBar(currentHP, maxHP);
     }
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,11 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private bool canLerp = false;
     
     [SerializeField] private CanvasGroup from, to;
+
+    private void Start()
+    {
+        PlayerStatsManager.Instance.GameState = 0;
+    }
 
     private void Update()
     {

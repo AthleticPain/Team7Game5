@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db133a83e089dc844a899133948d9008, type: 3}
   m_Name: Juno Stats
   m_EditorClassIdentifier: 
-  hp: 75
+  baseMaxHp: 75
+  baseStrength: 4
+  baseSpeed: 5
+  baseCritChance: 20
+  currentMaxHp: 75
+  currentHp: 75
   strength: 4
   speed: 5
   critChance: 20

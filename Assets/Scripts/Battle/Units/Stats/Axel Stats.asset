@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db133a83e089dc844a899133948d9008, type: 3}
   m_Name: Axel Stats
   m_EditorClassIdentifier: 
-  hp: 100
+  baseMaxHp: 100
+  baseStrength: 7
+  baseSpeed: 2
+  baseCritChance: 5
+  currentMaxHp: 100
+  currentHp: 100
   strength: 7
   speed: 2
   critChance: 5

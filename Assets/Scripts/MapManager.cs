@@ -57,17 +57,17 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-        if (PlayerStatsManager.Instance.gameState == 2)
+        if (PlayerStatsManager.Instance.GameState == 2)
         {
             // TODO: Load Data
             LoadMapNodesFromScriptableObject();
             SetNodeActivation();
         }
-        else if (PlayerStatsManager.Instance.gameState == 0)
+        else if (PlayerStatsManager.Instance.GameState == 0)
         {
             // Start Run
             Debug.Log("New Run Started");
-            PlayerStatsManager.Instance.gameState = 1;
+            PlayerStatsManager.Instance.GameState = 1;
             SpawnNodes(mapLayerOne, 1);
             SpawnNodes(mapLayerTwo, 2);
             SpawnNodes(mapLayerThree, 3);
@@ -236,7 +236,7 @@ public class MapManager : MonoBehaviour
     public void EnterFight()
     {
         // TODO
-        PlayerStatsManager.Instance.gameState = 2;
+        PlayerStatsManager.Instance.GameState = 2;
         SaveMapNodesToScriptableObject();
         SceneManager.LoadScene("BattleScene");
     }
