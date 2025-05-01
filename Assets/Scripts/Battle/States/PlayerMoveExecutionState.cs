@@ -6,12 +6,12 @@ using UnityEngine;
 public class PlayerMoveExecutionState : BattleStateBase
 {
     private MoveSO move;
-    private EnemyUnit targetEnemy;
+    private Unit[] targetUnits;
 
-    public PlayerMoveExecutionState(BattleSystem battle, MoveSO move, EnemyUnit targetEnemy) : base(battle)
+    public PlayerMoveExecutionState(BattleSystem battle, MoveSO move, Unit[] targetUnits) : base(battle)
     {
         this.move = move;
-        this.targetEnemy = targetEnemy;
+        this.targetUnits = targetUnits;
     }
 
     public override void Enter()
@@ -22,29 +22,32 @@ public class PlayerMoveExecutionState : BattleStateBase
     private IEnumerator ExecuteMove()
     {
         var player = battle.GetCurrentUnitAs<PlayerUnit>();
-        
-        if(player == null)
+
+        if (player == null)
         {
             Debug.LogError("Something went wrong");
         }
-        
+
         player.PlayAttack();
         yield return new WaitForSeconds(1f);
 
-        int damageValue = UnityEngine.Random.Range(move.minDamage, move.maxDamage) * player.unitStats.strength;
-        
-        targetEnemy.TakeDamage(damageValue);
-        targetEnemy.PlayHit();
-        
-        if (targetEnemy.IsDead)
+        foreach (Unit targetUnit in targetUnits)
         {
-            targetEnemy.PlayDeath();
-            //yield return new WaitForSeconds(0.5f);
+            int damageValue = UnityEngine.Random.Range(move.minDamage, move.maxDamage) * player.unitStats.strength;
+
+            targetUnit.TakeDamage(damageValue);
+            targetUnit.PlayHit();
+
+            if (targetUnit.IsDead)
+            {
+                targetUnit.PlayDeath();
+                //yield return new WaitForSeconds(0.5f);
+            }
+
+            yield return new WaitForSeconds(1.5f);
+
+            battle.OnTurnEnded();
         }
-        
-        yield return new WaitForSeconds(1.5f);
-        
-        battle.OnTurnEnded();
     }
 }
 

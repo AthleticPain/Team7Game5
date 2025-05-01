@@ -79,7 +79,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void OnPlayerTargetConfirmed(EnemyUnit targetEnemy, MoveSO selectedMove)
+    public void OnPlayerTargetConfirmed(Unit[] targetUnits, MoveSO selectedMove)
     {
         //TODO: Remove temporary hardcoded enemy and make it dynamic
         //EnemyUnit targetEnemy = enemyUnits[0];
@@ -87,7 +87,7 @@ public class BattleSystem : MonoBehaviour
         //Only allow this to happen when it is player's turn
         if (currentState is PlayerTargetSelectionState)
         {
-            SetState(new PlayerMoveExecutionState(this, selectedMove, targetEnemy));
+            SetState(new PlayerMoveExecutionState(this, selectedMove, targetUnits));
         }
     }
 

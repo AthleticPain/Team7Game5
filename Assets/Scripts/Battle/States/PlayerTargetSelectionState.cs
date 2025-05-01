@@ -23,7 +23,7 @@ public class PlayerTargetSelectionState : BattleStateBase
     public override void Enter()
     {
         //Target first enemy that isn't dead by default
-        foreach(EnemyUnit enemyUnit in enemies)
+        foreach (EnemyUnit enemyUnit in enemies)
         {
             if (!enemyUnit.IsDead)
             {
@@ -31,6 +31,7 @@ public class PlayerTargetSelectionState : BattleStateBase
                 break;
             }
         }
+
         currentPlayer = battle.GetCurrentUnitAs<PlayerUnit>();
 
         uiManager.SetDimBackground(true);
@@ -105,7 +106,8 @@ public class PlayerTargetSelectionState : BattleStateBase
     {
         if (!targetEnemy.IsDead)
         {
-            battle.OnPlayerTargetConfirmed(targetEnemy, currentlySelectedMove);
+            Unit[] targetEnemies = { targetEnemy };
+            battle.OnPlayerTargetConfirmed(targetEnemies, currentlySelectedMove);
         }
     }
 }
