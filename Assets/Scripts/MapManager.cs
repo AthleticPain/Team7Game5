@@ -63,6 +63,8 @@ public class MapManager : MonoBehaviour
         {
             // TODO: Load Data
             LoadMapNodesFromScriptableObject();
+            LoadResourceStats();
+            UpdateResourceUI();
             SetNodeActivation();
             PlayerStatsManager.Instance.GameState = 1;
         }
@@ -79,6 +81,8 @@ public class MapManager : MonoBehaviour
             // Set Stats
             currentGas = Mathf.Clamp(startGas, 0, maxGas);
             currentFood = Mathf.Clamp(startFood, 0, maxFood);
+            PlayerStatsManager.Instance.currentGas = currentGas;
+            PlayerStatsManager.Instance.currentFood = currentFood;
             UpdateResourceUI();
 
             // Play Dialogue
@@ -247,13 +251,21 @@ public class MapManager : MonoBehaviour
     public void UseGas(int amount)
     {
         currentGas = Mathf.Max(currentGas - amount, 0);
+        PlayerStatsManager.Instance.currentGas = currentGas;
         UpdateResourceUI();
     }
 
     public void UseFood(int amount)
     {
         currentFood = Mathf.Max(currentFood - amount, 0);
+        PlayerStatsManager.Instance.currentGas = currentFood;
         UpdateResourceUI();
+    }
+
+    public void LoadResourceStats()
+    {
+        currentGas = PlayerStatsManager.Instance.currentGas;
+        currentFood = PlayerStatsManager.Instance.currentFood;
     }
 
     public void UpdateResourceUI()

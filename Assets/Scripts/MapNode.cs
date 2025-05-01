@@ -34,6 +34,7 @@ public class MapNode : MonoBehaviour
         {
             case MapNodeType.Gas:
                 MapManager.Instance.UseGas(-gainAmount);
+                Debug.Log("Gain Amount: " + gainAmount);
                 if(fightChance > MapManager.Instance.FightPercent)
                 {
                     MapManager.Instance.CreateEvent(eventImage, eventDescription, 0);
@@ -44,6 +45,7 @@ public class MapNode : MonoBehaviour
                 break;
             case MapNodeType.Food:
                 MapManager.Instance.UseFood(-gainAmount);
+                Debug.Log("Gain Amount: " + gainAmount);
                 if(fightChance > MapManager.Instance.FightPercent)
                 {
                     MapManager.Instance.CreateEvent(eventImage, eventDescription, 0);
