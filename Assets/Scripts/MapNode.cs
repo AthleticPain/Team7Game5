@@ -29,9 +29,11 @@ public class MapNode : MonoBehaviour
     private void ProcessNode()
     {
         int fightChance = Random.Range(1, 101); // If Higher than Fight Percent then No Fight
+        int gainAmount = Random.Range(1, 15); // Gain Amount
         switch(nodeType)
         {
             case MapNodeType.Gas:
+                MapManager.Instance.UseGas(-gainAmount);
                 if(fightChance > MapManager.Instance.FightPercent)
                 {
                     MapManager.Instance.CreateEvent(eventImage, eventDescription, 0);
@@ -41,6 +43,7 @@ public class MapNode : MonoBehaviour
                 }
                 break;
             case MapNodeType.Food:
+                MapManager.Instance.UseFood(-gainAmount);
                 if(fightChance > MapManager.Instance.FightPercent)
                 {
                     MapManager.Instance.CreateEvent(eventImage, eventDescription, 0);
