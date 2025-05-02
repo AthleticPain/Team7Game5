@@ -78,6 +78,7 @@ public class BattleSystem : MonoBehaviour
 
             MoveSO selectedMove = currentPlayerUnit.Moves[currentPlayerUnit.selectedMoveIndex];
 
+            Unit[] targetUnits;
             switch (selectedMove.TargetingType)
             {
                 case TargetingType.singleEnemy:
@@ -92,8 +93,12 @@ public class BattleSystem : MonoBehaviour
                     SetState(new PlayerMoveExecutionState(this, selectedMove, new Unit[] { randomTarget }));
                     break;
                 case TargetingType.friendly:
-                    Unit[] targetUnits = new Unit[1];
-                    targetUnits[0] = CurrentUnit == playerUnits[0] ? playerUnits[1] : playerUnits[0];
+                    targetUnits = new Unit[1];
+                    targetUnits[0] = currentPlayerUnit == playerUnits[0] ? playerUnits[1] : playerUnits[0];
+                    SetState(new PlayerMoveExecutionState(this, selectedMove, targetUnits));
+                    break;
+                case TargetingType.self:
+                    targetUnits = new Unit[] { currentPlayerUnit };
                     SetState(new PlayerMoveExecutionState(this, selectedMove, targetUnits));
                     break;
                 default:

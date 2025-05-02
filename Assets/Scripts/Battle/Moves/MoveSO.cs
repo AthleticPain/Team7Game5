@@ -8,7 +8,8 @@ public enum TargetingType
     singleEnemy,
     allEnemies,
     randomEnemy,
-    friendly
+    friendly,
+    self
 }
 
 //[CreateAssetMenu(fileName = "NewMove", menuName = "Moves/ParentMove")]
