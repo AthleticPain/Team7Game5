@@ -23,39 +23,54 @@ public class PlayerMoveExecutionState : BattleStateBase
     private IEnumerator ExecuteMove()
     {
         var player = battle.GetCurrentUnitAs<PlayerUnit>();
-        int damageValue = move.GetDamageValue(player.unitStats);
 
-        if (player == null)
-        {
-            Debug.LogError("Something went wrong");
-        }
+        yield return move.ExecuteMove(player, targetUnits);
 
-        if (damageValue >= 0)
-        {
-            player.PlayAttack();
-            yield return new WaitForSeconds(1f);
-        }
+        // var moveType = move.GetType();
+        // Debug.Log("Move Type is: " + moveType);
 
-        foreach (Unit targetUnit in targetUnits)
-        {
-            Debug.Log($"{player.name} is attacking {targetUnit.name} with {move.name}.");
-
-
-            targetUnit.TakeDamage(damageValue);
-            if (damageValue > 0)
-                targetUnit.PlayHit();
-            else
-                targetUnit.PlayHeal();
-
-            if (targetUnit.IsDead)
-            {
-                targetUnit.PlayDeath();
-                //yield return new WaitForSeconds(0.5f);
-            }
-        }
+        // switch (move.GetType())
+        // {
+        //     case 
+        // }
+        //yield return ExecuteAttack(player, move as Attack);
 
         yield return new WaitForSeconds(1.5f);
 
         battle.OnTurnEnded();
     }
+
+    // private IEnumerator ExecuteAttack(PlayerUnit player, Attack attack)
+    // {
+    //     int damageValue = attack.GetDamageValue(player.unitStats);
+    //
+    //     if (player == null)
+    //     {
+    //         Debug.LogError("Something went wrong");
+    //     }
+    //
+    //     if (damageValue >= 0)
+    //     {
+    //         player.PlayAttack();
+    //         yield return new WaitForSeconds(1f);
+    //     }
+    //
+    //     foreach (Unit targetUnit in targetUnits)
+    //     {
+    //         Debug.Log($"{player.name} is attacking {targetUnit.name} with {attack.name}.");
+    //
+    //
+    //         targetUnit.TakeDamage(damageValue);
+    //         if (damageValue > 0)
+    //             targetUnit.PlayHit();
+    //         else
+    //             targetUnit.PlayHeal();
+    //
+    //         if (targetUnit.IsDead)
+    //         {
+    //             targetUnit.PlayDeath();
+    //             //yield return new WaitForSeconds(0.5f);
+    //         }
+    //     }
+    //}
 }

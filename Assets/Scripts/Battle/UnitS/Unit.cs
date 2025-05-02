@@ -14,6 +14,9 @@ public abstract class Unit : MonoBehaviour
 
     [SerializeField] public BattleUnitStatsSO unitStats;
     [SerializeField] protected List<MoveSO> moves;
+    
+    //Special Status Flags
+    public bool isProtected;
 
     public UnitStateEnum unitState;
 
@@ -37,6 +40,12 @@ public abstract class Unit : MonoBehaviour
 
     public void TakeDamage(int power)
     {
+        if (isProtected)
+        {
+            power /= 2;
+            isProtected = false;
+        }
+        
         currentHP = Mathf.Min(Mathf.Max(0, currentHP - power), maxHP);
         unitVisuals?.UpdateHealthBar(currentHP, maxHP);
         Debug.Log(name + " takes " + power + " damage!\nRemaining HP: " + currentHP + "/" + maxHP);

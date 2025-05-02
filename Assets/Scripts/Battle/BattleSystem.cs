@@ -94,6 +94,7 @@ public class BattleSystem : MonoBehaviour
     public void OnPlayerTargetConfirmed(Unit[] targetUnits, MoveSO selectedMove)
     {
         Debug.Log("Player target Confirmed. Current State: "+currentState.GetType().Name);
+        
         //Only allow this to happen when it is player's turn
         if (currentState is PlayerTargetSelectionState || currentState is PlayerActionSelectionState)
         {
@@ -147,7 +148,7 @@ public class BattleSystem : MonoBehaviour
             OnEnemyTurn();
     }
 
-    //Checks if either all player's are dead or all enemies are dead and ends battle accordingly
+    //Checks if either all players are dead or all enemies are dead and ends battle accordingly
     private bool IsBattleOver()
     {
         bool allPlayersDead = playerUnits.All(p => p.IsDead);

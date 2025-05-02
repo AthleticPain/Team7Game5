@@ -16,32 +16,21 @@ public class EnemyTurnState : BattleStateBase
     private IEnumerator EnemyTurn()
     {
         var enemy = battle.GetCurrentUnitAs<EnemyUnit>();
-        var move = enemy.GetRandomMove();
-        int damageValue = move.GetDamageValue(enemy.unitStats);
 
-        if (enemy == null)
+        //Assuming the move is going to be an attack
+        Attack move = enemy.GetRandomMove() as Attack;
+
+        if (move != null)
+        {
+            var playerTarget = new Unit[] { battle.GetRandomLivingPlayer() };
+            
+            yield return move.ExecuteMove(enemy, playerTarget);
+            
+            yield return new WaitForSeconds(1.5f);
+        }
+        else
         {
             Debug.LogError("Something went wrong");
-        }
-
-        var playerTarget = battle.GetRandomLivingPlayer();
-
-        if (damageValue >= 0)
-        {
-            enemy.PlayAttack();
-            yield return new WaitForSeconds(1f);
-        }
-
-        playerTarget.TakeDamage(damageValue);
-        if (damageValue > 0)
-            playerTarget.PlayHit();
-
-        yield return new WaitForSeconds(1.5f);
-
-        if (playerTarget.IsDead)
-        {
-            playerTarget.PlayDeath();
-            yield return new WaitForSeconds(0.5f);
         }
 
         // Loop back to next player

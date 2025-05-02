@@ -305,7 +305,8 @@ MonoBehaviour:
   currentHP: 10
   unitStats: {fileID: 11400000, guid: 38e8fc52e073f3b40802a1de45a3e8b5, type: 2}
   moves:
-  - {fileID: 11400000, guid: fd89268469cb79543a406a5905f41edf, type: 2}
+  - {fileID: 11400000, guid: c5da5bb2f7877354cb308f93bde0ada0, type: 2}
+  isProtected: 0
   unitState: 0
 --- !u!1 &129645956
 GameObject:
@@ -1028,7 +1029,7 @@ GameObject:
   - component: {fileID: 286366506}
   - component: {fileID: 286366505}
   m_Layer: 5
-  m_Name: Option 2
+  m_Name: Buff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1093,11 +1094,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1167362021}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2019742311}
+        m_TargetAssemblyTypeName: BuffActions, Assembly-CSharp
+        m_MethodName: Protect
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &286366506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,7 +1327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Juno and Axel have levelled up!
+  m_text: 'Juno and Axel have leveled up!
 
 '
   m_isRightToLeft: 0
@@ -4520,8 +4533,9 @@ MonoBehaviour:
   currentHP: 10
   unitStats: {fileID: 11400000, guid: 8317dfb91cbca204791f5be6b79eabb7, type: 2}
   moves:
-  - {fileID: 11400000, guid: fd89268469cb79543a406a5905f41edf, type: 2}
-  - {fileID: 11400000, guid: a15fcc01f48371c4190d404c73c1e9c7, type: 2}
+  - {fileID: 11400000, guid: c5da5bb2f7877354cb308f93bde0ada0, type: 2}
+  - {fileID: 11400000, guid: e325348ced6e64548aad830470e31e87, type: 2}
+  isProtected: 0
   unitState: 0
   selectedMoveIndex: 0
 --- !u!1 &1363482777
@@ -5377,7 +5391,8 @@ MonoBehaviour:
   currentHP: 10
   unitStats: {fileID: 11400000, guid: 38e8fc52e073f3b40802a1de45a3e8b5, type: 2}
   moves:
-  - {fileID: 11400000, guid: fd89268469cb79543a406a5905f41edf, type: 2}
+  - {fileID: 11400000, guid: c5da5bb2f7877354cb308f93bde0ada0, type: 2}
+  isProtected: 0
   unitState: 0
 --- !u!1 &1638511978
 GameObject:
@@ -6124,8 +6139,9 @@ MonoBehaviour:
   currentHP: 10
   unitStats: {fileID: 11400000, guid: 977fb4afca40f984cb080596b672888e, type: 2}
   moves:
-  - {fileID: 11400000, guid: fd89268469cb79543a406a5905f41edf, type: 2}
-  - {fileID: 11400000, guid: a15fcc01f48371c4190d404c73c1e9c7, type: 2}
+  - {fileID: 11400000, guid: c5da5bb2f7877354cb308f93bde0ada0, type: 2}
+  - {fileID: 11400000, guid: e325348ced6e64548aad830470e31e87, type: 2}
+  isProtected: 0
   unitState: 0
   selectedMoveIndex: 0
 --- !u!1 &1966110502
@@ -6274,6 +6290,7 @@ GameObject:
   - component: {fileID: 2019742307}
   - component: {fileID: 2019742309}
   - component: {fileID: 2019742310}
+  - component: {fileID: 2019742311}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -6353,9 +6370,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battle: {fileID: 2019742307}
   itemMoves:
-  - {fileID: 11400000, guid: 5c0d3e5e3b1a96e49b126cc3a42998a1, type: 2}
-  - {fileID: 11400000, guid: 08957ec9812372444b0378a0369b44b9, type: 2}
-  - {fileID: 11400000, guid: a15fcc01f48371c4190d404c73c1e9c7, type: 2}
+  - {fileID: 11400000, guid: 76d1116ca4e8fb1479ed675fdc86f02a, type: 2}
+  - {fileID: 11400000, guid: dfb244760f9ce8b4eac6da11ac0209f0, type: 2}
+  - {fileID: 11400000, guid: 0d9ec3276b4aab94baeee9458d0c97ad, type: 2}
+--- !u!114 &2019742311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019742306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9ee1daa8c640e47a96df870024abbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battle: {fileID: 2019742307}
+  playerUnits: []
 --- !u!1 &2061999132
 GameObject:
   m_ObjectHideFlags: 0
