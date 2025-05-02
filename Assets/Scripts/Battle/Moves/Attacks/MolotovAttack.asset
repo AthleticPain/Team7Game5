@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MolotovAttack
   m_EditorClassIdentifier: 
   moveName: MolotovAttack
+  targetingType: 1
   minDamage: 10
   maxDamage: 20
   scalingStat: 0

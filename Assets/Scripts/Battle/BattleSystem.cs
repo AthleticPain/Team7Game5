@@ -26,7 +26,7 @@ public class BattleSystem : MonoBehaviour
     public void SetState(BattleStateBase newState)
     {
         Debug.Log($"*** Exiting {currentState?.GetType().Name} and entering {newState.GetType().Name} ***");
-        
+
         currentState?.Exit();
         currentState = newState;
         currentState.Enter();
@@ -77,15 +77,36 @@ public class BattleSystem : MonoBehaviour
             Debug.Log("Selected move: " + currentPlayerUnit.Moves[currentPlayerUnit.selectedMoveIndex].name);
 
             MoveSO selectedMove = currentPlayerUnit.Moves[currentPlayerUnit.selectedMoveIndex];
-            SetState(new PlayerTargetSelectionState(this, battleUIManager, enemyUnits, playerUnits, selectedMove));
+
+            switch (selectedMove.TargetingType)
+            {
+                case TargetingType.singleEnemy:
+                    SetState(new PlayerTargetSelectionState(this, battleUIManager, enemyUnits, playerUnits,
+                        selectedMove));
+                    break;
+                case TargetingType.allEnemies:
+                    SetState(new PlayerMoveExecutionState(this, selectedMove, enemyUnits.ToArray()));
+                    break;
+                case TargetingType.randomEnemy:
+                    Unit randomTarget = enemyUnits[Random.Range(0, enemyUnits.Count)];
+                    SetState(new PlayerMoveExecutionState(this, selectedMove, new Unit[] { randomTarget }));
+                    break;
+                case TargetingType.friendly:
+                    Unit[] targetUnits = new Unit[1];
+                    targetUnits[0] = CurrentUnit == playerUnits[0] ? playerUnits[1] : playerUnits[0];
+                    SetState(new PlayerMoveExecutionState(this, selectedMove, targetUnits));
+                    break;
+                default:
+                    break;
+            }
         }
     }
-    
+
     public void OnPlayerMoveSelected(MoveSO selectedMove)
     {
         if (currentState is PlayerActionSelectionState)
         {
-            Debug.Log("Selected move: " +selectedMove.name);
+            Debug.Log("Selected move: " + selectedMove.name);
 
             SetState(new PlayerTargetSelectionState(this, battleUIManager, enemyUnits, playerUnits, selectedMove));
         }
@@ -93,8 +114,8 @@ public class BattleSystem : MonoBehaviour
 
     public void OnPlayerTargetConfirmed(Unit[] targetUnits, MoveSO selectedMove)
     {
-        Debug.Log("Player target Confirmed. Current State: "+currentState.GetType().Name);
-        
+        Debug.Log("Player target Confirmed. Current State: " + currentState.GetType().Name);
+
         //Only allow this to happen when it is player's turn
         if (currentState is PlayerTargetSelectionState || currentState is PlayerActionSelectionState)
         {

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Protect
   m_EditorClassIdentifier: 
   moveName: Protect
+  targetingType: 3

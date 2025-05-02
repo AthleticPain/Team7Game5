@@ -13,7 +13,7 @@ public class BuffActions : MonoBehaviour
         playerUnits = battle.GetListOfUnits<PlayerUnit>();
     }
 
-    public void Protect(int moveIndex)
+    public void Buff(int moveIndex)
     {
         PlayerUnit currentUnit = battle.GetCurrentUnitAs<PlayerUnit>();
         if (currentUnit == null)

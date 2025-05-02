@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MedkitHeal
   m_EditorClassIdentifier: 
   moveName: MedkitHeal
+  targetingType: 3
   minDamage: -30
   maxDamage: -30
   scalingStat: 3

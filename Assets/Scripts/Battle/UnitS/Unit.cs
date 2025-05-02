@@ -17,6 +17,7 @@ public abstract class Unit : MonoBehaviour
     
     //Special Status Flags
     public bool isProtected;
+    public bool isVulnerable;
 
     public UnitStateEnum unitState;
 
@@ -44,6 +45,11 @@ public abstract class Unit : MonoBehaviour
         {
             power /= 2;
             isProtected = false;
+        }
+
+        if (isVulnerable)
+        {
+            power *= 3;
         }
         
         currentHP = Mathf.Min(Mathf.Max(0, currentHP - power), maxHP);
