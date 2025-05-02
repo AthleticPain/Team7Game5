@@ -6,6 +6,7 @@ public class PlayerUnit : Unit
 {
     public int selectedMoveIndex;
     public List<MoveSO> Moves => moves;
+    
 
     public void PlayHighlightAnimation()
     {

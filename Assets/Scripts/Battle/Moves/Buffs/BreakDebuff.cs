@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakDebuff : MonoBehaviour
+[CreateAssetMenu(fileName = "NewMove", menuName = "Moves/Debuffs/Break")]
+public class BreakDebuff : Buff
 {
-    // Start is called before the first frame update
-    void Start()
+    public override IEnumerator ExecuteMove(Unit moveUser, Unit[] targetUnits)
     {
-        
-    }
+        base.ExecuteMove(moveUser, targetUnits);
 
-    // Update is called once per frame
-    void Update()
-    {
+        foreach (Unit target in targetUnits)
+        {
+            target.IsVulnerable = true;
+        }
+        
+        moveUser.PlayAttack();
+        yield return new WaitForSeconds(0.2f);
         
     }
 }

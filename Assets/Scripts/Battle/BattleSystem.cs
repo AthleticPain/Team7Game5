@@ -89,7 +89,8 @@ public class BattleSystem : MonoBehaviour
                     SetState(new PlayerMoveExecutionState(this, selectedMove, enemyUnits.ToArray()));
                     break;
                 case TargetingType.randomEnemy:
-                    Unit randomTarget = enemyUnits[Random.Range(0, enemyUnits.Count)];
+                    Unit[] aliveEnemies = enemyUnits.FindAll(x => !x.IsDead).ToArray();
+                    Unit randomTarget = aliveEnemies[Random.Range(0, aliveEnemies.Length)];
                     SetState(new PlayerMoveExecutionState(this, selectedMove, new Unit[] { randomTarget }));
                     break;
                 case TargetingType.friendly:
@@ -163,6 +164,12 @@ public class BattleSystem : MonoBehaviour
         if (IsBattleOver())
             return;
 
+        //Reset Portraits
+        foreach (PlayerUnit playerUnit in playerUnits)
+        {
+            playerUnit.portrait?.UpdatePortraitState(CharacterPortraitState.neutral);
+        }
+        
         //If game is not over, find next living unit's turn
         AdvanceToNextLivingUnit();
         var currentUnit = unitsInTurnOrder[currentTurnIndex];

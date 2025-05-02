@@ -20,6 +20,8 @@ public class UnitVisuals : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     [SerializeField] private Image healthBar;
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] protected GameObject[] dimOverlays;
+    [SerializeField] protected GameObject buffIcon;
+    [SerializeField] protected GameObject debuffIcon;
 
     [HideInInspector] public UnityEvent OnPointerEntered = new UnityEvent();
     [HideInInspector] public UnityEvent OnPointerClicked = new UnityEvent();
@@ -36,6 +38,7 @@ public class UnitVisuals : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     public void PlayAttack() => animator?.SetTrigger("Attack");
     public void PlayHighlightTurn() => animator?.SetTrigger("HighlightTurn");
     public void PlayHeal() => animator?.SetTrigger("Heal");
+    public void PlayDefault() => animator?.SetTrigger("Default");
 
     public virtual void SetVisualState(VisualState state)
     {
@@ -70,5 +73,15 @@ public class UnitVisuals : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     public void OnPointerClick(PointerEventData eventData)
     {
         OnPointerClicked?.Invoke();
+    }
+
+    public void ShowBuffIcon(bool active)
+    {
+        buffIcon?.gameObject.SetActive(active);
+    }
+
+    public void ShowDebuffIcon(bool active)
+    {
+        debuffIcon?.gameObject.SetActive(active);
     }
 }

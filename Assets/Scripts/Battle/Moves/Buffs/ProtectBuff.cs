@@ -11,9 +11,11 @@ public class ProtectBuff : Buff
 
         foreach (Unit target in targetUnits)
         {
-            target.isProtected = true;
+            target.IsProtected = true;
         }
+
+        moveUser.PlayDefault();
         
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.2f);
     }
 }
