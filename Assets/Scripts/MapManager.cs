@@ -20,7 +20,7 @@ public class MapManager : MonoBehaviour
     public static MapManager Instance { get; private set; }
 
     [Header("Map Settings")] public List<GameObject> currentNodes = new List<GameObject>();
-    public int FightPercent = 50;
+    public int FightPercent = 20;
 
     [Header("Map Components")] public GameObject mapLayerOne;
     public GameObject mapLayerTwo;
