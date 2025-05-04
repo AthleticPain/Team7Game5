@@ -293,6 +293,7 @@ MonoBehaviour:
   from: {fileID: 0}
   to: {fileID: 0}
   OptionsPanel: {fileID: 500929978}
+  mainMenuSceneName: MainMenu
 --- !u!4 &23635140
 Transform:
   m_ObjectHideFlags: 0
@@ -317,9 +318,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 23635138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a86e278953a39954e8649881bbffb1c8, type: 3}
+  m_Script: {fileID: 11500000, guid: f6d766643001222479e1c289f455d100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSlider: {fileID: 0}
+  waitToLerp: 1
+  menuAlphaThreshold: 0.2
+  fadeSpeed: 1
+  canLerp: 0
+  from: {fileID: 0}
+  to: {fileID: 0}
+  OptionsPanel: {fileID: 0}
+  mainMenuSceneName: MainMenu
 --- !u!1 &48499428
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,37 +413,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 23635139}
+      - m_Target: {fileID: 1393196030}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: ChangeMenu
+        m_MethodName: GoBackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 23635139}
-        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: SetFrom
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1715127831}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 23635139}
-        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: SetTo
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1715127831}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.CanvasGroup, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1372,7 +1358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &500929979
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1723,8 +1709,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 516547974}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4001,7 +3987,7 @@ RectTransform:
   m_Father: {fileID: 1929925545}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5113,9 +5099,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1393196029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a86e278953a39954e8649881bbffb1c8, type: 3}
+  m_Script: {fileID: 11500000, guid: f6d766643001222479e1c289f455d100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSlider: {fileID: 0}
+  waitToLerp: 1
+  menuAlphaThreshold: 0.2
+  fadeSpeed: 1
+  canLerp: 0
+  from: {fileID: 0}
+  to: {fileID: 0}
+  OptionsPanel: {fileID: 0}
+  mainMenuSceneName: MainMenu
 --- !u!4 &1393196031
 Transform:
   m_ObjectHideFlags: 0

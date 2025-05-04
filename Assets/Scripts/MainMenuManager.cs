@@ -13,7 +13,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private bool canLerp = false;
 
     [SerializeField] private CanvasGroup from, to;
-    [SerializeField] private GameObject OptionsPanel; // Reference to the options panel GameObject
+    [SerializeField] private GameObject OptionsPanel;
+    [SerializeField] private string mainMenuSceneName = "MainMenu"; // Name of your main menu scene
 
     private void Update()
     {
@@ -27,15 +28,15 @@ public class MainMenuManager : MonoBehaviour
                 to.alpha += Time.unscaledDeltaTime * fadeSpeed;
             }
 
-            if (from.alpha == 0)
+            if (Mathf.Approximately(from.alpha, 0))
             {
                 from.gameObject.SetActive(false);
             }
-            if (to.alpha == 1)
+            if (Mathf.Approximately(to.alpha, 1))
             {
                 canLerp = false;
             }
-        };
+        }
     }
 
     // Fading Menu Functions
@@ -49,20 +50,30 @@ public class MainMenuManager : MonoBehaviour
     private void Awake()
     {
         // Load saved value if exists
-        if (PlayerPrefs.HasKey("SliderValue"))
+        if (optionsSlider != null && PlayerPrefs.HasKey("SliderValue"))
         {
             float savedValue = PlayerPrefs.GetFloat("SliderValue");
             optionsSlider.value = savedValue;
+            optionsSlider.onValueChanged.AddListener(HandleSliderValueChanged);
         }
-
-        // Add listener for value changes
-        optionsSlider.onValueChanged.AddListener(HandleSliderValueChanged);
 
         // Ensure options panel is hidden at start
         if (OptionsPanel != null)
         {
             OptionsPanel.SetActive(false);
         }
+    }
+
+    private void OnDestroy()
+    {
+        // Clean up event listeners
+        if (optionsSlider != null)
+        {
+            optionsSlider.onValueChanged.RemoveListener(HandleSliderValueChanged);
+        }
+
+        // Reset timescale when destroyed
+        Time.timeScale = 1f;
     }
 
     private void HandleSliderValueChanged(float value)
@@ -108,6 +119,16 @@ public class MainMenuManager : MonoBehaviour
     {
         PlayerStatsManager.Instance.GameState = 0;
         ChangeSceneFromName("MapTest");
+    }
+
+    // New function to return to main menu
+    public void GoBackToMainMenu()
+    {
+        // Reset timescale in case game was paused
+        Time.timeScale = 1f;
+
+        // Load the main menu scene
+        ChangeSceneFromName(mainMenuSceneName);
     }
 
     public void ChangeSceneFromIndex(int sceneIndex) => SceneManager.LoadScene(sceneIndex);
