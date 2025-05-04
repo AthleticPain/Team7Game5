@@ -187,6 +187,7 @@ public class BattleSystem : MonoBehaviour
         bool allPlayersDead = playerUnits.All(p => p.IsDead);
         if (allPlayersDead)
         {
+            DataTracker.Instance.EndRun(); // Save Run Data
             EndBattle(false); // Lost
             return true;
         }

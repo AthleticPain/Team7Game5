@@ -30,6 +30,9 @@ public class MapNode : MonoBehaviour
     {
         int fightChance = Random.Range(1, 101); // If Higher than Fight Percent then No Fight
         int gainAmount = Random.Range(1, 15); // Gain Amount
+
+        // Track Node
+        DataTracker.Instance.RecordNodeVisit((int)nodeType);
         switch(nodeType)
         {
             case MapNodeType.Gas:

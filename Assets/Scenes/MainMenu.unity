@@ -1351,7 +1351,6 @@ GameObject:
   - component: {fileID: 500929979}
   - component: {fileID: 500929982}
   - component: {fileID: 500929981}
-  - component: {fileID: 500929980}
   m_Layer: 5
   m_Name: OptionsPanel
   m_TagString: Untagged
@@ -1380,20 +1379,6 @@ RectTransform:
   m_AnchoredPosition: {x: -786.8221, y: -135.61905}
   m_SizeDelta: {x: 1623.6439, y: 995.0617}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &500929980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500929978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2674efe16fa19aa4dbadc10d3c2e1ffd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 575a3a0bb763e894b8b770ed9788c9f0, type: 2}
-  volumeSlider: {fileID: 754910880}
 --- !u!114 &500929981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2618,7 +2603,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 500929980}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: VolumeController, Assembly-CSharp
         m_MethodName: SetVolume
         m_Mode: 0
@@ -5126,6 +5111,61 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1431440037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1431440038}
+  - component: {fileID: 1431440039}
+  m_Layer: 0
+  m_Name: DataTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1431440038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431440037}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1431440039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431440037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd7d2a61e2c2960458164a77321c0a65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRun:
+    nodesVisited: 0
+    nodeVisitSequence: 
+  mapNodeReport:
+    Fight: 0
+    Food: 0
+    Gas: 0
+    Rest: 0
+    Water: 0
+  travelDataLog:
+    runs: []
 --- !u!1 &1566047962
 GameObject:
   m_ObjectHideFlags: 0
@@ -5709,6 +5749,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1431440039}
+        m_TargetAssemblyTypeName: DataTracker, Assembly-CSharp
+        m_MethodName: StartNewRun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 23635139}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: StartNewGame
@@ -6955,3 +7007,4 @@ SceneRoots:
   - {fileID: 1964051421}
   - {fileID: 1393196031}
   - {fileID: 308181551}
+  - {fileID: 1431440038}

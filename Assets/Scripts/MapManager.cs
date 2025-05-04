@@ -139,8 +139,11 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    // When the player click on the next node to travel to
     public void AdvanceMap(int selectedIndex)
     {
+        DataTracker.Instance.currentRun.nodesVisited++;
+
         // Store the new base node (the one that was clicked)
         GameObject newBase = currentNodes[selectedIndex];
 
@@ -320,5 +323,10 @@ public class MapManager : MonoBehaviour
         }
 
         return nodeTypeList;
+    }
+
+    public void EndGameRun()
+    {
+        DataTracker.Instance.EndRun();
     }
 }
